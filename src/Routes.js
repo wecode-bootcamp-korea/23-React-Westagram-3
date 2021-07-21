@@ -1,9 +1,24 @@
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import LoginJoon from '.';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Sig nup';
+import Main from './pages/Main/Main';
 
+class Routes extends React.Component {
+  render() {
+    return (
+      <Router>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/main" component={Main} />
+        </Switch>
+        <Footer />
+      </Router>
+    );
+  }
+}
 
-// import 한 컴포넌트에 대한 경로를 각각 설정해줍니다.
-<Route exact path='/login-joonsik' component={LoginJoon} />
-<Route exact path='/main-joonsik' component={MainJoon} />
-<Route exact path='/login-jongtaek' component={LoginJongTaek} />
-<Route exact path='/main-jongtaek' component={MainJongTaek} />
+export default Routes;
