@@ -71,6 +71,14 @@
 // }
 
 /* -----main----- */
+li {
+  list-style: none;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
 
 .mainPage {
   display: flex;
