@@ -1,0 +1,369 @@
+/* -----header----- */
+
+.headerFlexBox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  background-color: white;
+  .mainPageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 975px;
+    width: 100%;
+    height: 54px;
+    padding: 0 20px;
+    .mainLogo {
+      font-family: 'Lobster', cursive;
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+    .searchBox {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7px;
+      .search {
+        width: 215px;
+        height: 28px;
+        padding: 3px 10px 3px 26px;
+        border-color: rgb(230, 230, 230);
+        border-radius: 3px;
+        background-color: #fafafa;
+        font-size: 14px;
+        text-align: center;
+        &:focus {
+          z-index: 1;
+        }
+      }
+      .searchIcon {
+        position: absolute;
+        width: 10px;
+        margin-right: 25px;
+      }
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      li {
+        padding-left: 24px;
+        height: 22px;
+        img {
+          width: 22px;
+        }
+      }
+    }
+  }
+  button {
+    border: 0;
+    background-color: white;
+    outline: 0;
+    cursor: pointer;
+  }
+  .userProfileImg {
+    color: white;
+    border-radius: 100px;
+    background-color: #fafafa;
+  }
+}
+
+/* -----main----- */
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+  .mainContentsFlexBox {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 935px;
+    width: 100%;
+    margin-top: 54px;
+    padding: 30px 0 0 0;
+    .followingUserListBox {
+      max-width: 614px;
+      width: 100%;
+      margin: 0 28px 0 0;
+      .followingUserList {
+        display: flex;
+        width: 614px;
+        margin-bottom: 24px;
+        padding: 16px 0;
+        border: 1px solid rgb(230, 230, 230);
+        background-color: white;
+        .followingUser {
+          margin-left: 10px;
+          text-align: center;
+          .userProfileImg {
+            width: 66px;
+            height: 66px;
+          }
+          .username {
+            width: 74px;
+            height: 14px;
+            font-size: 12px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+      .feedLayoutBox {
+        margin-bottom: 24px;
+        border: 1px solid rgb(230, 230, 230);
+        background-color: white;
+        .feedHeader {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 60px;
+          padding: 16px;
+          .userInfo {
+            display: flex;
+            align-items: center;
+            .userProfileImg {
+              width: 32px;
+              height: 32px;
+            }
+            .username {
+              padding-left: 10px;
+              font-size: 14px;
+              font-weight: 800;
+            }
+          }
+        }
+        .feedImgBox {
+          .feedImg {
+            width: 614px;
+            height: 614px;
+          }
+        }
+        .userInteractionArea {
+          .heartCommentShareImg {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+            ul {
+              display: flex;
+              img {
+                width: 24px;
+                height: 24px;
+                margin: 8px;
+              }
+            }
+          }
+          .howManyHeart {
+            margin-bottom: 8px;
+            padding: 0 20px;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            span {
+              font-weight: 700;
+            }
+          }
+          .commentUploaded {
+            padding: 0 16px;
+            .whoseComment {
+              position: relative;
+              display: flex;
+              align-items: center;
+              margin-bottom: 4px;
+              .name {
+                padding-left: 5px;
+                font-weight: 700;
+              }
+              .commentContext {
+                margin-left: 10px;
+              }
+              .commentHeartImg {
+                position: absolute;
+                right: 25px;
+                width: 12px;
+                height: 12px;
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+              .commentDelete {
+                position: absolute;
+                right: 5px;
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+              p {
+                font-size: 14px;
+              }
+            }
+          }
+          .whenLastCommentUpload {
+            height: 19px;
+            margin-bottom: 4px;
+            padding-top: 5px;
+            padding-left: 21px;
+            font-size: 10px;
+          }
+          .leaveComment {
+            display: flex;
+            align-items: center;
+            height: 56px;
+            margin-top: 4px;
+            padding: 0 16px;
+            border: 1px solid rgb(230, 230, 230);
+            .commentBox {
+              display: flex;
+              align-items: center;
+              .openImogeBox {
+                width: 44px;
+                height: 44px;
+                padding: 8px 16px 8px 0;
+              }
+              .inputComment {
+                width: 516px;
+                height: 18px;
+                border: none;
+                font-size: 0.85rem;
+                letter-spacing: 0;
+              }
+              .send {
+                width: 24px;
+                height: 18px;
+                color: #0095f6;
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .sidebarBox {
+      position: relative;
+      .sidebar {
+        position: fixed;
+        display: block;
+        top: 88px;
+        max-width: 293px;
+        width: 100%;
+        text-align: center;
+        .sidebarAboutUser {
+          .myProfile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            padding: 8px 16px;
+            .userContainer {
+              display: flex;
+              align-items: center;
+              img {
+                width: 56px;
+                height: 56px;
+              }
+              .userInfo {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                margin-left: 12px;
+                padding-left: 5px;
+              }
+            }
+          }
+          .sidebarInfo {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            padding: 4px 16px;
+            .recommend {
+              color: #8e8e8e;
+              font-size: 14px;
+            }
+            .allSee {
+              font-size: 12px;
+            }
+          }
+          .sidebarRecommendUserList {
+            margin-left: 4px;
+            margin-bottom: 4px;
+            padding: 8px 0;
+            .user {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 8px 16px;
+              .userContainer {
+                display: flex;
+                align-items: center;
+                .userProfileImg {
+                  width: 42px;
+                  height: 42px;
+                }
+                .userInfo {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: start;
+                  padding-left: 5px;
+                }
+              }
+            }
+          }
+          h6 {
+            font-size: 14px;
+          }
+          a {
+            font-size: 12px;
+          }
+        }
+        .sidebarAboutCompany {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 3px;
+          padding: 0 16px;
+          word-break: keep-all;
+          li {
+            margin: 0 2px;
+            a {
+              color: #c7c7c7;
+              font-size: 11px;
+            }
+          }
+        }
+        .sidebarAboutCopyright {
+          margin: 16px;
+          color: #c7c7c7;
+          text-align: left;
+          font-size: 11px;
+        }
+        .whoIsFollowing {
+          margin-top: 8px;
+          color: #8e8e8e;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  button {
+    border: 0;
+    background-color: white;
+    outline: 0;
+    cursor: pointer;
+  }
+  .userProfileImg {
+    color: white;
+    border-radius: 100px;
+    background-color: #fafafa;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .sidebar {
+    display: none;
+  }
+
+  .mainContentsFlexBox {
+    justify-content: center;
+  }
+}
