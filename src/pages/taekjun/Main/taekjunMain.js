@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from './components/Nav/Nav';
-import './Main.scss';
+import { withRouter } from 'react-router';
+import Nav from '../../../components/Nav/Nav';
+import './taekjunMain.scss';
 
 class Main extends React.Component {
   render() {
@@ -41,7 +42,6 @@ class Main extends React.Component {
             </ul>
           </header>
         </div> */}
-
         <main className="mainPage">
           <div className="mainContentsFlexBox">
             <section className="followingUserListBox">
