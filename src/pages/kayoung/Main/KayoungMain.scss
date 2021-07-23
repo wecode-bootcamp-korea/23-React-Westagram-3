@@ -312,10 +312,6 @@ aside .mainRightWrap {
     }
 
     .recommendLists {
-      box-sizing: content-box;
-      margin-top: 3px;
-      border: $border;
-
       li {
         display: flex;
         justify-content: space-between;
@@ -340,7 +336,6 @@ aside .mainRightWrap {
 
           .profileImage {
             @include icon-image;
-            // box-sizing: content-box;
             border: $border;
           }
         }
