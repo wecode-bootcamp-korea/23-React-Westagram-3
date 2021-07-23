@@ -1,11 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import InputUserInfo from './InputUserInfo';
 import './taekjunLogin.scss';
 
 class Login extends React.Component {
-  // goToMain = () => {
-  //   this.props.history.push('');
-  // };
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  handleUserInfo = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
   render() {
     return (
@@ -15,16 +23,7 @@ class Login extends React.Component {
             <h1 className="login logo">Westagram</h1>
             <div className="userInfoContainer">
               <div className="loginBtnContainer">
-                <input
-                  className="loginId"
-                  type="text"
-                  placeholder="전화번호, 사용자 이름 또는 이메일"
-                />
-                <input
-                  className="loginPassword"
-                  type="password"
-                  placeholder="비밀번호"
-                />
+                <InputUserInfo handleUserInfo={this.handleUserInfo} />
                 <Link to="/taekjunMain">
                   <button className="loginButton">로그인</button>
                 </Link>
