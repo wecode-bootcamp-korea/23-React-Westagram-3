@@ -19,7 +19,7 @@ class Routes extends React.Component {
   render() {
     return (
       <Router>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path="/" component={App} />
           <Route exact path="/DaeungLogin" component={DaeungLogin} />
