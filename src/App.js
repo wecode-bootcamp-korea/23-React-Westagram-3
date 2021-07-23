@@ -12,7 +12,7 @@ class App extends React.Component {
           <Link to="/daeungLogin">daeung</Link>
         </div>
         <div>
-          <Link to="/kaungLogin">kayoung</Link>
+          <Link to="/kayoungLogin">kayoung</Link>
         </div>
         <div>
           <Link to="/taekjunLogin">taekjun</Link>

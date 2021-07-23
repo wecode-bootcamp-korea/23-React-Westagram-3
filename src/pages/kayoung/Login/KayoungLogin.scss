@@ -3,19 +3,6 @@ $border: 1px solid #efefef;
 $background-color: #fafafa;
 $button-color: #0095f6;
 
-@mixin default-css {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 @mixin inputbtn-stack {
   display: block;
   margin: 0 auto;
@@ -23,16 +10,10 @@ $button-color: #0095f6;
   height: 36px;
 }
 
-* {
-  @include default-css;
-}
-
-body {
-  @include flex-center;
-  font-family: $font-stack;
-}
-
 .loginContainer {
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: $font-stack;
   width: 500px;
   height: auto;
   border: $border;
@@ -42,41 +23,41 @@ body {
     padding: 50px;
     font-size: 65px;
   }
-}
 
-.inputGroup {
-  input {
-    @include inputbtn-stack;
-    padding: 20px 16px;
-    font-size: 16px;
-    border: $border;
-    background-color: $background-color;
+  .inputGroup {
+    input {
+      @include inputbtn-stack;
+      padding: 20px 16px;
+      font-size: 16px;
+      border: $border;
+      background-color: $background-color;
 
-    &:first-child {
-      margin-bottom: 10px;
+      &:first-child {
+        margin-bottom: 10px;
+      }
       &:nth-child(2) {
         margin-bottom: 20px;
       }
     }
-  }
 
-  #inputButton {
-    @include inputbtn-stack;
-    display: block;
-    margin-bottom: 200px;
-    text-align: center;
-    font-size: 20px;
-    color: #ffff;
-    background-color: $button-color;
-    border: none;
-    border-radius: 6px;
-    opacity: 1;
-    transition: opacity 200ms ease-in;
-    cursor: pointer;
+    #inputButton {
+      @include inputbtn-stack;
+      display: block;
+      margin-bottom: 200px;
+      text-align: center;
+      font-size: 20px;
+      color: $background-color;
+      background-color: $button-color;
+      border: none;
+      border-radius: 6px;
+      opacity: 1;
+      transition: opacity 200ms ease-in;
+      cursor: pointer;
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
   }
 

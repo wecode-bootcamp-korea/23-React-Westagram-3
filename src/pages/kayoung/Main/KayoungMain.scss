@@ -7,8 +7,8 @@ $button-color: #0095f6;
 
 @mixin default-css {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @mixin flex-center {
@@ -29,15 +29,19 @@ $button-color: #0095f6;
   color: $font-color-title;
 }
 
-* {
-  @include default-css;
+@mixin icon-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 
-body {
-  @include flex-center;
+.mainWrapper {
+  @include default-css;
+  display: flex;
+  justify-content: column;
+  align-items: column;
   font-family: $font-stack;
   padding: 100px 0;
-  width: 100%;
   text-align: center;
   background-color: $background-color;
 
@@ -48,12 +52,6 @@ body {
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
   }
 
   button,
@@ -91,16 +89,9 @@ body {
   span.descSpan {
     @include description-span;
   }
-
-  .mainWrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: column;
-    align-items: column;
-  }
 }
 
+/*
 .headerMenuContainer {
   position: fixed;
   top: 0;
@@ -155,6 +146,7 @@ body {
     }
   }
 }
+*/
 
 main .articleContainer {
   margin-top: 20px;
@@ -163,24 +155,24 @@ main .articleContainer {
   border: $border;
   background-color: $background-color;
 
-  header .feedProfileContainer {
+  .feedProfileContainer {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
 
-    .profileImage strong {
-      font-size: 16px;
-    }
-
-    .profileImage .userProfile {
-      position: relative;
-      bottom: -10px;
-      margin-right: 10px;
-    }
-
     .userProfile {
       position: relative;
       top: -20px;
+      bottom: -10px;
+      margin-right: 10px;
+
+      img {
+        @include icon-image;
+      }
+
+      strong {
+        font-size: 16px;
+      }
     }
 
     .fa-ellipsis-h {
@@ -210,6 +202,10 @@ main .articleContainer {
     .likedComment {
       display: flex;
       margin-bottom: 10px;
+
+      img {
+        @include icon-image;
+      }
 
       p {
         transform: translateY(20%);
@@ -343,7 +339,8 @@ aside .mainRightWrap {
           );
 
           .profileImage {
-            box-sizing: content-box;
+            @include icon-image;
+            // box-sizing: content-box;
             border: $border;
           }
         }
@@ -381,10 +378,9 @@ aside .mainRightWrap {
         display: inline-block;
 
         a {
+          @include description-span;
           display: flex;
           align-items: center;
-          font-size: 11px;
-          color: #a5a7aa;
         }
       }
     }

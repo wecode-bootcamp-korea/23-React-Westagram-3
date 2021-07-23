@@ -1,11 +1,13 @@
 import React from 'react';
 import './KayoungMain.scss';
+import Nav from '../../../components/Nav/Nav';
 
 class KayoungMain extends React.Component {
   render() {
     return (
       <div className="mainWrapper">
-        <header className="headerMenuContainer">
+        <Nav />
+        {/* <header className="headerMenuContainer">
           <h1>Westagram logo</h1>
           <div className="headerGroup">
             <div className="headerContent">
@@ -50,7 +52,7 @@ class KayoungMain extends React.Component {
               </ul>
             </nav>
           </div>
-        </header>
+        </header> */}
         <main>
           <article>
             <div className="articleContainer">
@@ -58,8 +60,7 @@ class KayoungMain extends React.Component {
                 <div className="userProfile">
                   <img
                     alt="Profile image"
-                    src="./images/feed-profile.jpeg"
-                    class="profileImage"
+                    src="./images/kayoung/feed-profile.jpeg"
                   />
                   <strong>canon_mj</strong>
                 </div>
@@ -70,7 +71,7 @@ class KayoungMain extends React.Component {
                 </div>
               </header>
               <div className="feedImage">
-                <img alt="Feed image" src="./images/feed-image.jpg" />
+                <img alt="Feed image" src="./images/kayoung/feed-image.jpg" />
               </div>
               <section>
                 <h1>Comment box</h1>
@@ -94,7 +95,7 @@ class KayoungMain extends React.Component {
                       <button type="button">
                         <img
                           className="icon-react"
-                          src="./images/dm.png"
+                          src="./images/kayoung/dm.png"
                           alt="DM"
                         />
                       </button>
@@ -110,7 +111,7 @@ class KayoungMain extends React.Component {
                   <div className="likedComment">
                     <img
                       alt="latest replier profile"
-                      src="./images/reply-profile.jpg"
+                      src="./images/kayoung/reply-profile.jpg"
                       className="profileImage"
                     />
                     <p>
@@ -144,7 +145,10 @@ class KayoungMain extends React.Component {
         <aside>
           <div className="mainRightWrap">
             <div className="myProfileImage">
-              <img alt="My profile image" src="./images/my-profile.png" />
+              <img
+                alt="My profile image"
+                src="./images/kayoung/my-profile.png"
+              />
               <div className="myProfileContent">
                 <strong>Kykim</strong>
                 <span className="descSpan">FE개발자</span>
@@ -161,13 +165,13 @@ class KayoungMain extends React.Component {
                     <div className="effectWrap">
                       <img
                         alt="Recommended accounts profile"
-                        src="./images/rec-image-1.jpg"
+                        src="./images/kayoung/rec-image-1.jpg"
                         className="profileImage"
                       />
                     </div>
                     <div className="recommendContent">
                       <span className="titleSpan">joaaaaaahye</span>
-                      <span classNameName="descSpan">회원님을 위한 추천</span>
+                      <span className="descSpan">회원님을 위한 추천</span>
                     </div>
                   </div>
                   <button type="button" className="statusButton">
@@ -179,7 +183,7 @@ class KayoungMain extends React.Component {
                     <div className="effectWrap">
                       <img
                         alt="Recommended accounts profile"
-                        src="./images/rec-image-2.jpg"
+                        src="./images/kayoung/rec-image-2.jpg"
                         className="profileImage"
                       />
                     </div>
@@ -197,7 +201,7 @@ class KayoungMain extends React.Component {
                     <div className="effectWrap">
                       <img
                         alt="Recommended accounts profile"
-                        src="./images/rec-image-3.jpg"
+                        src="./images/kayoung/rec-image-3.jpg"
                         className="profileImage"
                       />
                     </div>
@@ -215,7 +219,7 @@ class KayoungMain extends React.Component {
                     <div className="effectWrap">
                       <img
                         alt="Recommended accounts profile"
-                        src="./images/rec-image-4.jpg"
+                        src="./images/kayoung/rec-image-4.jpg"
                         className="profileImage"
                       />
                     </div>
