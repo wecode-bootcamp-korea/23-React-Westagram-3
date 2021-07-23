@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DaeungLogin from './pages/daeung/Login/Login';
 import JaehyunLogin from './pages/jaehyun/Login/Login';
 import JiseonLogin from './pages/jiseon/Login/Login';
-import KayoungLogin from './pages/kayoung/Login/Login';
+import KayoungLogin from './pages/kayoung/Login/KayoungLogin';
 import TaekjunLogin from './pages/taekjun/Login/Login';
 
 import DaeungMain from './pages/daeung/Main/Main';
 import JaehyunMain from './pages/jaehyun/Main/Main';
 import JiseonMain from './pages/jiseon/Main/Main';
-import KayoungMain from './pages/kayoung/Main/Main';
+import KayoungMain from './pages/kayoung/Main/KayoungMain';
 import TaekjunMain from './pages/taekjun/Main/Main';
 import App from './App';
 
