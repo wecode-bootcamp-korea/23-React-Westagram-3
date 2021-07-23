@@ -24,11 +24,19 @@ class Login extends React.Component {
     this.state = {
       id: '',
       pw: '',
+      bgColor: '#C0DFFD',
+      cursorChange: 'Default',
     };
   }
 
   goToMain = () => {
-    this.props.history.push('/DaeungMain');
+    const getId = this.state.id;
+    const getPw = this.state.pw;
+
+    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length >= 5
+      ? this.props.history.push('/DaeungMain')
+      : alert('아이디와 비밀번호 확인하세요');
+    // this.props.history.push('/DaeungMain');
   };
 
   handleIdInput = e => {
@@ -36,6 +44,17 @@ class Login extends React.Component {
     this.setState({
       id: id,
     });
+    const getPw = this.state.pw;
+
+    return id && getPw && id.indexOf('@') !== -1 && getPw.length >= 5
+      ? this.setState({
+          bgColor: '#0095F6',
+          cursorChange: 'pointer',
+        })
+      : this.setState({
+          bgColor: '#C0DFFD',
+          cursorChange: 'Default',
+        });
   };
 
   handlePwInput = e => {
@@ -43,8 +62,30 @@ class Login extends React.Component {
     this.setState({
       pw: pw,
     });
+    const getId = this.state.id;
+
+    return getId && pw && getId.indexOf('@') !== -1 && pw.length >= 5
+      ? this.setState({
+          bgColor: '#0095F6',
+          cursorChange: 'pointer',
+        })
+      : this.setState({
+          bgColor: '#C0DFFD',
+          cursorChange: 'Default',
+        });
   };
-  loginCheck = () => {};
+  loginCheck = () => {
+    const getId = this.state.id;
+    const getPw = this.state.pw;
+
+    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length >= 5
+      ? this.setState({
+          cursorChange: 'pointer',
+        })
+      : this.setState({
+          cursorChange: 'Default',
+        });
+  };
 
   render() {
     console.log(this.state.id);
@@ -78,8 +119,12 @@ class Login extends React.Component {
               <div className="buttonBox">
                 <button
                   className="btnHover"
-                  onClick={this.loginCheck}
+                  onClick={this.goToMain}
                   id="loginButton"
+                  style={{
+                    backgroundColor: this.state.bgColor,
+                    cursor: this.state.cursorChange,
+                  }}
                 >
                   로그인
                 </button>
