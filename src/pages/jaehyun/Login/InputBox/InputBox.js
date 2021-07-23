@@ -5,9 +5,16 @@ class InputBox extends React.Component {
     super(props);
   }
   inputHandler = e => {
-    this.props.onchange(e.target.name, e.target.value);
-    console.log(e.target.name, e.target.value);
+    const { name, value } = e.target;
+    let disable;
+    if (name === 'userName') {
+      disable = value.indexOf('@') ? false : true;
+    } else if (name === 'password') {
+      disable = value.length > 5 ? false : true;
+    }
+    this.props.giveValue(name, value, disable);
   };
+
   render() {
     return (
       <input

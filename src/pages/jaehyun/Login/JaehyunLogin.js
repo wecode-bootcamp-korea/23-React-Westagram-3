@@ -10,12 +10,17 @@ class JaehyunLogin extends React.Component {
     this.state = {
       userName: '',
       password: '',
+      userIdCheck: true,
+      passwordCheck: true,
     };
   }
 
-  inputChangeHandler = (name, value) => {
-    this.setState({ [name]: value });
-    console.log('현재 state value', this.state);
+  inputChangeHandler = (name, value, disable) => {
+    this.setState({
+      [name]: value,
+      [name === 'userName' ? 'userIdCheck' : 'passwordCheck']: disable,
+    });
+    console.log(this.state);
   };
 
   goToMain = () => {
@@ -31,15 +36,24 @@ class JaehyunLogin extends React.Component {
             name="userName"
             type="email"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onchange={this.inputChangeHandler}
+            giveValue={this.inputChangeHandler}
           />
           <InputBox
             name="password"
             type="password"
             placeholder="비밀번호"
-            onchange={this.inputChangeHandler}
+            giveValue={this.inputChangeHandler}
           />
-          <button id="loginButton" onClick={this.goToMain}>
+          <button
+            id="loginButton"
+            onClick={this.goToMain}
+            disabled={this.state.userIdCheck || this.state.passwordCheck}
+            style={
+              this.state.userIdCheck || this.state.passwordCheck
+                ? { opacity: '10%' }
+                : { opacity: '100%' }
+            }
+          >
             로그인
           </button>
         </form>
