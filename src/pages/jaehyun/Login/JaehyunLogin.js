@@ -15,12 +15,29 @@ class JaehyunLogin extends React.Component {
     };
   }
 
-  inputChangeHandler = (name, value, disable) => {
-    this.setState({
-      [name]: value,
-      [name === 'userName' ? 'userIdCheck' : 'passwordCheck']: disable,
-    });
-    console.log(this.state);
+  // inputChangeHandler = (name, value, disable) => {
+  //   this.setState({
+  //     [name]: value,
+  //     [name === 'userName' ? 'userIdCheck' : 'passwordCheck']: disable,
+  //   });
+  // };
+
+  inputChangeHandler = e => {
+    const { name, value } = e.target;
+    if (name === 'userName') {
+      this.setState({
+        userName: value,
+        userIdCheck: value.indexOf('@') === -1,
+      });
+      console.log('ㅇㅏ이디', this.state.userIdCheck);
+    }
+    if (name === 'password') {
+      this.setState({
+        password: value,
+        passwordCheck: value.length < 5,
+      });
+      console.log('비밀번호', this.state.passwordCheck);
+    }
   };
 
   goToMain = () => {
@@ -36,13 +53,13 @@ class JaehyunLogin extends React.Component {
             name="userName"
             type="email"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            giveValue={this.inputChangeHandler}
+            recivedValue={this.inputChangeHandler}
           />
           <InputBox
             name="password"
             type="password"
             placeholder="비밀번호"
-            giveValue={this.inputChangeHandler}
+            recivedValue={this.inputChangeHandler}
           />
           <button
             id="loginButton"
