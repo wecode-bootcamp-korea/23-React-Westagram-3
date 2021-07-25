@@ -24,7 +24,7 @@
         display: inline-flex;
         flex-direction: column;
         align-items: center;
-        .loginId {
+        input {
           width: 268px;
           margin: 6px 40px;
           padding: 9px 0px 7px 8px;
@@ -33,16 +33,7 @@
           background-color: #fafafa;
           font-size: 0.8rem;
         }
-        .loginPassword {
-          width: 268px;
-          margin: 6px 40px;
-          padding: 9px 0px 7px 8px;
-          border: 1px solid rgb(211, 211, 211);
-          border-radius: 2px;
-          background-color: #fafafa;
-          font-size: 0.8rem;
-        }
-        .loginButton {
+        button {
           width: 268px;
           height: 29px;
           margin: 8px 40px;
