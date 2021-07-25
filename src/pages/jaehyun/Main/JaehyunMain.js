@@ -1,34 +1,46 @@
 import React from 'react';
-import Nav from '../../../components/Nav/Nav';
 import { withRouter } from 'react-router';
 import './JaehyunMain.scss';
+import Nav from '../../../components/Nav/Nav';
+import Content from './Content/Content';
 
 class JaehyunMain extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userName: [],
+      newContent: '',
+      contents: [],
+    };
+  }
+
+  currentState = e => {
+    const newContent = e.target.value;
+    this.setState({ newContent: newContent });
+    if (e.key === 'Enter') {
+      e.target.value = '';
+    }
+  };
+
+  addContent = e => {
+    e.preventDefault();
+    const newContent = this.state.newContent;
+    if (!newContent.length) {
+      alert('댓글을 입력해주세요!!');
+      return;
+    }
+    this.setState({
+      contents: this.state.contents.concat(newContent),
+      newConetent: '',
+    });
+    e.target.reset();
+  };
+
   render() {
     return (
       <main className="wrap">
         <Nav />
-        {/* <nav className="fixedTop">
-          <div className="leftContent">
-            <p className="westagramTitle">Westagram</p>
-          </div>
-          <div className="inputContainer">
-            <img className="searchIcon" src="/images/search.png" alt="search" />
-            <input type="text" className="searchInput" />
-            <p className="searchText">검색</p>
-          </div>
-          <div className="rightContents">
-            <img className="homeIcon" src="/images/home.png" alt="home" />
-            <img className="sendIcon" src="/images/send.png" alt="send" />
-            <img
-              className="exploreIcon"
-              src="/images/explore.png"
-              alt="explore"
-            />
-            <img className="heartIcon" src="/images/heart.png" alt="heart" />
-            <img className="profileIcon" src="/images/user.png" alt="profile" />
-          </div>
-        </nav> */}
         <section>
           <article>
             <div className="feedHeader">
@@ -66,7 +78,7 @@ class JaehyunMain extends React.Component {
                   />
                   <img
                     className="shareIcon"
-                    src="/images/jaehyunsend.png"
+                    src="/images/jaehyun/send.png"
                     alt="share"
                   />
                 </div>
@@ -80,7 +92,13 @@ class JaehyunMain extends React.Component {
                 <p>좋아요 2개</p>
                 <span>hoit_studio</span> Styx : isonomiā official trailer
                 <p>#Styx #hoitstudio</p>
-                <ul id="reply"></ul>
+                <ul id="reply">
+                  {this.state.contents.map((content, index) => {
+                    return (
+                      <Content key={index} userName={index} content={content} />
+                    );
+                  })}
+                </ul>
               </div>
             </div>
             <div className="feedReply">
@@ -89,12 +107,18 @@ class JaehyunMain extends React.Component {
                 src="/images/jaehyun/smile.png"
                 alt="smile"
               />
-              <input
-                className="replyInput"
-                type="text"
-                placeholder="댓글달기..."
-              />
-              <button className="postButton">게시</button>
+              <form onSubmit={this.addContent}>
+                <input
+                  name="comment"
+                  className="replyInput"
+                  type="text"
+                  placeholder="댓글달기..."
+                  onKeyUp={this.currentState}
+                />
+                <button className="postButton" type="submit">
+                  게시
+                </button>
+              </form>
             </div>
           </article>
           <aside>
