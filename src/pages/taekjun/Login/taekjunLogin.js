@@ -23,32 +23,22 @@ class Login extends React.Component {
   }
 
   validationCheck = (name, value) => {
-    this.setState({
-      [name]: value,
-      validationMode:
-        name === 'id'
-          ? (this.validationMode = 'idCheck')
-          : (this.validationMode = 'pwCheck'),
-      idValidation:
-        this.validationMode === 'idCheck'
-          ? !!(value.indexOf('@') + 1)
-            ? (this.idValidation = true)
-            : (this.idValidation = false)
-          : this.idValidation
-          ? (this.idValidation = true)
-          : (this.idValidation = false),
-      pwValidation:
-        this.validationMode !== 'idCheck'
-          ? value.length > 4
-            ? (this.pwValidation = true)
-            : (this.pwValidation = false)
-          : this.pwValidation
-          ? (this.pwValidation = true)
-          : (this.pwValidation = false),
-    });
+    if (name === 'id') {
+      value.indexOf('@') !== -1
+        ? this.setState({ idValidation: true })
+        : this.setState({ idValidation: false });
+    }
+
+    if (name === 'pw') {
+      value.length > 4
+        ? this.setState({ pwValidation: true })
+        : this.setState({ pwValidation: false });
+    }
   };
 
   render() {
+    console.log(this.state.idValidation, 'id');
+    console.log(this.state.pwValidation, 'pw');
     return (
       <div>
         <div className="flexBox">
@@ -68,7 +58,7 @@ class Login extends React.Component {
                   <button
                     className="loginButton"
                     style={
-                      this.idValidation && this.pwValidation
+                      this.state.idValidation && this.state.pwValidation
                         ? { opacity: '100%' }
                         : { opacity: '50%' }
                     }

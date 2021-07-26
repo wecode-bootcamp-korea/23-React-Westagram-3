@@ -1,47 +1,66 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import Nav from '../../../components/Nav/Nav';
+import InputBox from './InputBox';
+import CommentList from './commentList';
+import sendCommentBtn from './sendCommentBtn';
 import './taekjunMain.scss';
 
 class Main extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      commentInputData: {
+        name: 'inputComment',
+        placeholder: '댓글 달기...',
+      },
+      btnType: 'submit',
+      nickname: 'user1',
+      commentValue: 'value',
+      commentImg: {
+        src: 'images/taekjun/heart.png',
+        alt: 'heartIcon',
+      },
+      lists: [],
+    };
+  }
+
+  getCommentValue = value => {
+    const people = [];
+    let user = {};
+    {
+      for (let i = 0; i < 10; i++) {
+        people.push('user' + i);
+      }
+      user = people[Math.trunc(Math.random() * 10)];
+    }
+    this.setState({
+      nickname: user,
+      commentValue: value,
+    });
+  };
+
+  pushComment = () => {
+    this.setState({
+      lists: this.state.lists.concat(
+        <li className="whoseComment">
+          <p className="name">{this.state.nickname}</p>
+          <p className="commentContext">{this.state.commentValue}</p>
+          <img
+            className="commentHeartImg"
+            src={this.state.commentImg.src}
+            alt={this.state.commentImg.alt}
+          ></img>
+          <p className="commentDelete">ⅹ</p>
+        </li>
+      ),
+    });
+  };
+
   render() {
     return (
       <div>
         <Nav />
-        {/* <div className="headerFlexBox">
-          <header className="mainPageHeader">
-            <h1 className="mainLogo">Westagram</h1>
-            <div className="searchBox">
-              <input
-                className="search"
-                type="text"
-                placeholder="검색"
-                onclick="this.placeholder=''"
-                onblur="this.placeholder='검색'"
-              />
-              <img
-                className="searchIcon"
-                src="images/taekjun/search.png"
-                alt="searchIcon"
-              />
-            </div>
-            <ul className="nav">
-              <li>
-                <img src="images/taekjun/explore.png" alt="exploreIcon" />
-              </li>
-              <li>
-                <img src="images/taekjun/heart.png" alt="heartIcon" />
-              </li>
-              <li>
-                <img
-                  className="userProfileImg"
-                  src="images/taekjun/profile.png"
-                  alt="profileIcon"
-                />
-              </li>
-            </ul>
-          </header>
-        </div> */}
         <main className="mainPage">
           <div className="mainContentsFlexBox">
             <section className="followingUserListBox">
@@ -128,53 +147,24 @@ class Main extends React.Component {
                   <section className="howManyHeart">
                     <span>wecode</span>님 외 <span>40명</span>이 좋아합니다.
                   </section>
-                  <section className="commentUploaded">
-                    <article className="whoseComment">
-                      <p className="name">yeonuk</p>
-                      <p className="commentContext">안녕하세요</p>
-                      <img
-                        className="commentHeartImg"
-                        src="images/taekjun/heart.png"
-                        alt="heartIcon"
-                      />
-                      <p className="commentDelete">ⅹ</p>
-                    </article>
-                    <article className="whoseComment">
-                      <p className="name">areum</p>
-                      <p className="commentContext">귀여워요</p>
-                      <img
-                        className="commentHeartImg"
-                        src="images/taekjun/heart.png"
-                        alt="heartIcon"
-                      />
-                      <p className="commentDelete">ⅹ</p>
-                    </article>
-                    <article className="whoseComment">
-                      <p className="name">yeoleum</p>
-                      <p className="commentContext">저도 강아지키워요</p>
-                      <img
-                        className="commentHeartImg"
-                        src="images/taekjun/heart.png"
-                        alt="heartIcon"
-                      />
-                      <p className="commentDelete">ⅹ</p>
-                    </article>
-                  </section>
+                  <CommentList data={this.state.lists} />
                   <p className="whenLastCommentUpload">11시간 전</p>
                   <section className="leaveComment">
                     <div className="commentBox">
                       <button className="openImogeBox">
                         <img src="images/taekjun/imoge.png" alt="imogeIcon" />
                       </button>
-                      <input
-                        className="inputComment"
-                        name="inputComment"
-                        placeholder="댓글 달기..."
-                        onkeydown="enterkey();"
+                      <InputBox
+                        data={this.state.commentInputData}
+                        transferValue={this.getCommentValue}
                       />
-                      <button className="send">
-                        <p className="send">게시</p>
-                      </button>
+                      <sendCommentBtn
+                        className="sendComment"
+                        btnType={this.state.btnType}
+                        onClick={this.pushComment}
+                      >
+                        게시
+                      </sendCommentBtn>
                     </div>
                   </section>
                 </main>
