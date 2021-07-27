@@ -1,6 +1,5 @@
 import React from 'react';
 import './Login.scss';
-import Loginbtn from './Loginbtn';
 
 class LoginBox extends React.Component {
   render() {
@@ -18,7 +17,6 @@ class LoginBox extends React.Component {
           type="password"
           placeholder=" 비밀번호"
         />
-        <Loginbtn />
       </div>
     );
   }
