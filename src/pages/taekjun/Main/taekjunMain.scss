@@ -163,6 +163,9 @@ a {
                 border: none;
                 font-size: 0.85rem;
                 letter-spacing: 0;
+                &:focus {
+                  outline: none;
+                }
               }
               .sendComment {
                 width: 24px;

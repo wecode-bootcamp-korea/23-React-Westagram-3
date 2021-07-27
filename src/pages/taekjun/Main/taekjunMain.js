@@ -16,7 +16,7 @@ class Main extends React.Component {
       },
       btnType: 'submit',
       nickname: 'user1',
-      commentValue: 'value',
+      commentValue: '',
       commentImg: {
         src: 'images/taekjun/heart.png',
         alt: 'heartIcon',
@@ -55,6 +55,13 @@ class Main extends React.Component {
         </li>
       ),
     });
+    this.state.commentValue = '';
+  };
+
+  enterPushComment = e => {
+    if (window.event.keyCode == 13) {
+      this.pushComment();
+    }
   };
 
   render() {
@@ -156,7 +163,9 @@ class Main extends React.Component {
                       </button>
                       <InputBox
                         data={this.state.commentInputData}
+                        comment={this.state.commentValue}
                         transferValue={this.getCommentValue}
+                        enterClick={this.enterPushComment}
                       />
                       <sendCommentBtn
                         className="sendComment"

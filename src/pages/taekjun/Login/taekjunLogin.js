@@ -29,11 +29,36 @@ class Login extends React.Component {
         : this.setState({ idValidation: false });
     }
 
+    value.length > 4 && console.log(1);
+
     if (name === 'pw') {
       value.length > 4
         ? this.setState({ pwValidation: true })
         : this.setState({ pwValidation: false });
     }
+
+    // this.setState({
+    //   validationMode:
+    //     name === 'id'
+    //       ? (this.validationMode = 'idCheck')
+    //       : (this.validationMode = 'pwCheck'),
+    //   idValidation:
+    //     this.validationMode === 'idCheck'
+    //       ? !!(value.indexOf('@') + 1)
+    //         ? (this.idValidation = true)
+    //         : (this.idValidation = false)
+    //       : this.idValidation
+    //       ? (this.idValidation = true)
+    //       : (this.idValidation = false),
+    //   pwValidation:
+    //     this.validationMode !== 'idCheck'
+    //       ? value.length > 4
+    //         ? (this.pwValidation = true)
+    //         : (this.pwValidation = false)
+    //       : this.pwValidation
+    //       ? (this.pwValidation = true)
+    //       : (this.pwValidation = false),
+    // });
   };
 
   render() {

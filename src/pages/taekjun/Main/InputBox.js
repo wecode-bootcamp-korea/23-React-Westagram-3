@@ -15,8 +15,10 @@ class InputBox extends Component {
       <>
         <input
           name={this.props.data.name}
+          value={this.props.comment}
           placeholder={this.props.data.placeholder}
           onChange={this.giveValueToParent}
+          onKeyDown={this.props.enterClick}
         />
       </>
     );
