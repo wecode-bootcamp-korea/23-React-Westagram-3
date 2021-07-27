@@ -415,6 +415,7 @@
         .userStory {
           position: relative;
           height: 225px;
+          width: 100%;
           border: 1px solid #dbdbdb;
           overflow: hidden;
           background-color: white;
@@ -423,7 +424,7 @@
             align-items: center;
             justify-content: space-between;
             height: 30px;
-            width: 100%;
+            width: 300px;
             /* border: 1px solid black; */
             padding: 0 10px;
             position: absolute;
@@ -490,6 +491,7 @@
               justify-content: space-between;
               align-items: center;
               height: 30px;
+              width: 300px;
               /* border: 1px solid black; */
               padding: 0 10px;
               margin-bottom: 5px;

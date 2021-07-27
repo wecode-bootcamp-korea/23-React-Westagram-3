@@ -5,20 +5,17 @@ import Nav from '../../../components/Nav/Nav';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = [
-      {
-        comment: {
-          userId: '',
-          commentText: '',
-          commentNum: 0,
-        },
-        commentCount: 0,
+    this.state = {
+      currentComment: {
+        userId: '',
+        commentText: '',
       },
-    ];
+      commentList: [],
+    };
   }
   handeleComment = e => {
     this.setState({
-      comment: {
+      currentComment: {
         userId: '아무개',
         commentText: e.target.value,
       },
@@ -26,17 +23,14 @@ class Main extends React.Component {
   };
   writeComment = e => {
     this.setState({
-      comment: {
-        commentNum: this.state.comment.commentNum + 1,
-      },
+      commentList: this.state.commentList.concat({
+        userId: this.state.currentComment.userId,
+        commentText: this.state.currentComment.commentText,
+      }),
     });
-    this.commentList[this.state.comment.commentNum] =
-      this.state.comment.commentText;
   };
 
-  commentList = {};
   render() {
-    console.log(this.state);
     // console.log(this.commentList);
     // console.log(this.state.comment.commentNum);
     return (
@@ -105,20 +99,24 @@ class Main extends React.Component {
                 </span>
               </div>
               <div className="feedReplyBox">
-                <div className="feedReplyPart1">
-                  <div>
-                    <span className="feedReplyId">visitor1234_id</span>
-                    <span className="feedReplyContents">우와....</span>
-                  </div>
-                  <div className="deleteReply">
-                    <div>
-                      <i className="fas fa-times deleteButton"></i>
+                {this.state.commentList.map(comment => {
+                  return (
+                    <div className="feedReplyPart1">
+                      <div>
+                        <span className="feedReplyId">visitor1234_id</span>
+                        <span className="feedReplyContents">우와....</span>
+                      </div>
+                      <div className="deleteReply">
+                        <div>
+                          <i className="fas fa-times deleteButton"></i>
+                        </div>
+                        <div>
+                          <i className="far fa-heart fa-sm heartReply"></i>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <i className="far fa-heart fa-sm heartReply"></i>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
 
                 <div className="feedReplyInfoPart">
                   <span className="feedReplyInfo">11분 전</span>
