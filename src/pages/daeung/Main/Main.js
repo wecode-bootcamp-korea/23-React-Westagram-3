@@ -3,7 +3,42 @@ import './Main.scss';
 import Nav from '../../../components/Nav/Nav';
 
 class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = [
+      {
+        comment: {
+          userId: '',
+          commentText: '',
+          commentNum: 0,
+        },
+        commentCount: 0,
+      },
+    ];
+  }
+  handeleComment = e => {
+    this.setState({
+      comment: {
+        userId: '아무개',
+        commentText: e.target.value,
+      },
+    });
+  };
+  writeComment = e => {
+    this.setState({
+      comment: {
+        commentNum: this.state.comment.commentNum + 1,
+      },
+    });
+    this.commentList[this.state.comment.commentNum] =
+      this.state.comment.commentText;
+  };
+
+  commentList = {};
   render() {
+    console.log(this.state);
+    // console.log(this.commentList);
+    // console.log(this.state.comment.commentNum);
     return (
       <article id="wrap">
         <section id="topBar">
@@ -99,13 +134,17 @@ class Main extends React.Component {
                     <textarea
                       className="textarea"
                       placeholder="댓글 달기..."
-                      /*onKeyDown={resize(this)} onKeyUp={resize(this)}*/ name=""
+                      name=""
                       id="reply"
                       rows="1"
+                      onChange={this.handeleComment}
                     ></textarea>
                   </div>
                   <div>
-                    <button className="replyButton" /*onClick="ReplySubmit()"*/>
+                    <button
+                      className="replyButton"
+                      onClick={this.writeComment} /*onClick="ReplySubmit()"*/
+                    >
                       게시
                     </button>
                   </div>

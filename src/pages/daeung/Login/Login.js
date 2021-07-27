@@ -3,6 +3,10 @@ import './Login.scss';
 import { withRouter } from 'react-router-dom';
 
 class InputBoxDiv extends React.Component {
+  sendInfo = e => {
+    this.props.onChange(e.target.id, e.target.value);
+  };
+
   render() {
     return (
       <div className={this.props.divClass}>
@@ -11,7 +15,7 @@ class InputBoxDiv extends React.Component {
           id={this.props.id}
           placeholder={this.props.placeholder}
           type={this.props.type}
-          onChange={this.props.onChange}
+          onChange={this.sendInfo}
         />
       </div>
     );
@@ -33,63 +37,44 @@ class Login extends React.Component {
     const getId = this.state.id;
     const getPw = this.state.pw;
 
-    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length >= 5
+    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length > 4
       ? this.props.history.push('/DaeungMain')
       : alert('아이디와 비밀번호 확인하세요');
     // this.props.history.push('/DaeungMain');
   };
 
-  handleIdInput = e => {
-    const id = e.target.value;
+  handleLogin = (name, value) => {
     this.setState({
-      id: id,
+      [name]: value,
     });
-    const getPw = this.state.pw;
-
-    return id && getPw && id.indexOf('@') !== -1 && getPw.length >= 5
-      ? this.setState({
-          bgColor: '#0095F6',
-          cursorChange: 'pointer',
-        })
-      : this.setState({
-          bgColor: '#C0DFFD',
-          cursorChange: 'Default',
-        });
-  };
-
-  handlePwInput = e => {
-    const pw = e.target.value;
-    this.setState({
-      pw: pw,
-    });
-    const getId = this.state.id;
-
-    return getId && pw && getId.indexOf('@') !== -1 && pw.length >= 5
-      ? this.setState({
-          bgColor: '#0095F6',
-          cursorChange: 'pointer',
-        })
-      : this.setState({
-          bgColor: '#C0DFFD',
-          cursorChange: 'Default',
-        });
-  };
-  loginCheck = () => {
-    const getId = this.state.id;
-    const getPw = this.state.pw;
-
-    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length >= 5
-      ? this.setState({
-          cursorChange: 'pointer',
-        })
-      : this.setState({
-          cursorChange: 'Default',
-        });
+    console.log('여기서도??' + this.state);
+    if (name === 'id') {
+      return this.state.id.indexOf('@') !== -1 && this.state.pw.length > 4
+        ? this.setState({
+            bgColor: '#0095F6',
+            cursorChange: 'pointer',
+          })
+        : this.setState({
+            bgColor: '#C0DFFD',
+            cursorChange: 'Default',
+          });
+    } else if (name === 'pw') {
+      return this.state.id.indexOf('@') !== -1 && this.state.pw.length > 4
+        ? this.setState({
+            bgColor: '#0095F6',
+            cursorChange: 'pointer',
+          })
+        : this.setState({
+            bgColor: '#C0DFFD',
+            cursorChange: 'Default',
+          });
+    }
+    console.log('여기선?' + this.state);
   };
 
   render() {
-    console.log(this.state.id);
-    console.log(this.state.pw);
+    console.log(this.state);
+
     return (
       <article id="login">
         <div id="allBox">
@@ -105,7 +90,7 @@ class Login extends React.Component {
                   id="id"
                   placeholder="전화번호, 사용자 이름 또는 이메일"
                   type="text"
-                  onChange={this.handleIdInput}
+                  onChange={this.handleLogin}
                 />
                 <InputBoxDiv
                   divClass="inputBox"
@@ -113,7 +98,7 @@ class Login extends React.Component {
                   id="pw"
                   placeholder="비밀번호"
                   type="password"
-                  onChange={this.handlePwInput}
+                  onChange={this.handleLogin}
                 />
               </form>
               <div className="buttonBox">
