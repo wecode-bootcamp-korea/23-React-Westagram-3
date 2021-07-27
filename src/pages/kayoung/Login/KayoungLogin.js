@@ -16,12 +16,20 @@ class LoginInput extends React.Component {
   handleIdInput = e => {
     this.setState({
       userInfo: e.target.value,
+      disabled:
+        this.state.userInfo.length !== 0 && this.state.userPw.length !== 0
+          ? false
+          : true,
     });
   };
 
   handlePwInput = e => {
     this.setState({
       userPw: e.target.value,
+      disabled:
+        this.state.userInfo.length !== 0 && this.state.userPw.length !== 0
+          ? false
+          : true,
     });
   };
 
@@ -37,7 +45,7 @@ class LoginInput extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.userInfo.length, this.state.userPw.length);
     return (
       <section className="loginContainer">
         <h1 className="logo">Westagram</h1>
@@ -61,11 +69,7 @@ class LoginInput extends React.Component {
             type="submit"
             onClick={this.goToMain}
             id="inputButton"
-            disabled={
-              this.state.userInfo !== 0 && this.state.userPw !== 0
-                ? false
-                : true
-            }
+            disabled={this.state.disabled}
           >
             로그인
           </button>

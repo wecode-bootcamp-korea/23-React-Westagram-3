@@ -1,58 +1,39 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import './KayoungMain.scss';
 import Nav from '../../../components/Nav/Nav';
+import Comment from './Comment';
 
 class KayoungMain extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      replyBox: [],
+      replyContent: '',
+    };
+  }
+
+  storeComment = e => {
+    this.setState({ replyContent: e.target.value });
+    if (e.key === 'Enter') {
+      this.addComment(e);
+    }
+  };
+
+  addComment = e => {
+    e.preventDefault();
+    this.setState({
+      replyBox: this.state.replyBox.concat(this.state.replyContent),
+      replyContent: '',
+    });
+  };
+
   render() {
+    let replies = this.state.replyBox;
     return (
       <div className="mainWrapper">
         <Nav />
-        {/* <header className="headerMenuContainer">
-          <h1>Westagram logo</h1>
-          <div className="headerGroup">
-            <div className="headerContent">
-              <a herf="./main.html">
-                <strong>Westagram</strong>
-              </a>
-            </div>
-            <div className="inputGroup">
-              <input type="text" placeholder="검색" />
-              <i className="fas fa-search"></i>
-            </div>
-            <nav>
-              <h1>Navigation</h1>
-              <ul>
-                <li>
-                  <a href="#">
-                    <img
-                      src=" https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/explore.png"
-                      alt="Search icon"
-                      className="naviIcon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
-                      alt="Likes me list icon"
-                      className="naviIcon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src=" https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png"
-                      alt="My page icon"
-                      className="naviIcon"
-                    />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </header> */}
         <main>
           <article>
             <div className="articleContainer">
@@ -121,17 +102,27 @@ class KayoungMain extends React.Component {
                   </div>
                   <ul id="replyList">
                     <li>
-                      <span className="name">canon_mj</span>
-                      <span className="titlespan">
+                      <span className="name" id="replyId">
+                        canon_mj
+                      </span>
+                      <span className="titleSpan" id="replyContent">
                         한가롭게 수영하며 커피 마시고 싶다...
                       </span>
                     </li>
+                    {replies.map((content, index) => {
+                      return <Comment key={index} content={content} />;
+                    })}
                   </ul>
-                  <form className="replyForm" method="POST">
+                  <form
+                    className="replyForm"
+                    method="POST"
+                    onSubmit={this.addComment}
+                  >
                     <input
                       type="text"
                       placeholder="댓글 달기"
                       id="replyInput"
+                      onKeyUp={this.storeComment}
                     />
                     <button type="submit" id="replyButton">
                       게시
@@ -284,7 +275,7 @@ class KayoungMain extends React.Component {
                   </li>
                   <li className="footerListItem">
                     <a href="" target="_blank">
-                      언어 ·
+                      언어
                     </a>
                   </li>
                 </ul>
@@ -298,4 +289,4 @@ class KayoungMain extends React.Component {
   }
 }
 
-export default KayoungMain;
+export default withRouter(KayoungMain);

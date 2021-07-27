@@ -2,6 +2,7 @@ $font-stack: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 $border: 1px solid #efefef;
 $font-color-p: #262626;
 $font-color-title: #8e8e8e;
+$background-color-main: #ffffff;
 $background-color: #fafafa;
 $button-color: #0095f6;
 
@@ -43,11 +44,7 @@ $button-color: #0095f6;
   font-family: $font-stack;
   padding: 100px 0;
   text-align: center;
-  background-color: $background-color;
-
-  h1 {
-    display: none;
-  }
+  background-color: $background-color-main;
 
   a {
     color: inherit;
@@ -81,7 +78,7 @@ $button-color: #0095f6;
     color: $font-color-p;
   }
 
-  span.name,
+  .name,
   .titleSpan {
     @include title-span;
   }
@@ -97,7 +94,7 @@ $button-color: #0095f6;
   top: 0;
   padding: 20px 80px;
   width: 100vw;
-  background-color: $background-color;
+  background-color: $background-color-main;
   border-bottom: $border;
   text-align: center;
 
@@ -118,12 +115,12 @@ $button-color: #0095f6;
       height: 30px;
       border: $border;
       border-radius: 5px;
-      background-color: $background-color;
+      background-color: $background-color-main;
       text-align: center;
 
       input {
         text-align: center;
-        background-color: $background-color;
+        background-color: $background-color-main;
 
         .fa-search {
           position: absolute;
@@ -147,18 +144,22 @@ $button-color: #0095f6;
   }
 }
 */
+.mainWrapper {
+  background-color: $background-color;
+}
 
 main .articleContainer {
   margin-top: 20px;
   margin-left: 80px;
   padding: 30px 0 0;
   border: $border;
-  background-color: $background-color;
+  background-color: $background-color-main;
 
   .feedProfileContainer {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
+    background-color: $background-color-main;
 
     .userProfile {
       position: relative;
@@ -182,11 +183,15 @@ main .articleContainer {
     }
   }
 
+  section h1 {
+    display: none;
+  }
+
   section .commentGroup {
-    margin: 10px 0 0;
+    margin: 10px;
     padding: 0 16px;
     text-align: left;
-    background-color: $background-color;
+    background-color: $background-color-main;
 
     .commentButtonIcon {
       display: flex;
@@ -195,7 +200,8 @@ main .articleContainer {
       .icon-react {
         width: 24px;
         height: 24px;
-        margin-bottom: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
       }
     }
 
@@ -214,15 +220,30 @@ main .articleContainer {
       }
     }
 
+    #replyList {
+      border-bottom: $border;
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      .name {
+        margin-right: 10px;
+      }
+
+      .titleSpan {
+        font-weight: 500;
+      }
+    }
+
     .replyForm {
       display: flex;
       justify-content: space-around;
       text-align: left;
+      height: 50px;
 
       #replyInput {
-        width: 560px;
-        height: 18px;
-        padding: 28px 16px;
+        width: 90%;
         font-size: 14px;
         color: $font-color-p;
         text-decoration: none;
@@ -348,6 +369,14 @@ aside .mainRightWrap {
             display: block;
             margin-bottom: 3px;
             text-align: left;
+          }
+
+          .titleSpan {
+            margin-right: 10px;
+          }
+
+          .descSpan {
+            font-weight: 500;
           }
         }
       }
