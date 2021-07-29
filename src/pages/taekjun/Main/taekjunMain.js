@@ -1,66 +1,35 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import Nav from '../../../components/Nav/Nav';
-import InputBox from './InputBox';
-import CommentList from './commentList';
-import sendCommentBtn from './sendCommentBtn';
+import CommentList from './CommentList';
 import './taekjunMain.scss';
 
 class Main extends React.Component {
   constructor() {
     super();
     this.state = {
-      commentInputData: {
-        name: 'inputComment',
-        placeholder: '댓글 달기...',
-      },
-      btnType: 'submit',
-      nickname: 'user1',
-      commentValue: '',
-      commentImg: {
-        src: 'images/taekjun/heart.png',
-        alt: 'heartIcon',
-      },
-      lists: [],
+      newCommentValue: '',
+      commentArray: [],
     };
   }
 
-  getCommentValue = value => {
-    const people = [];
-    let user = {};
-    {
-      for (let i = 0; i < 10; i++) {
-        people.push('user' + i);
-      }
-      user = people[Math.trunc(Math.random() * 10)];
-    }
-    this.setState({
-      nickname: user,
-      commentValue: value,
-    });
+  newComment = e => {
+    const newCommentValue = e.target.value;
+    this.setState({ newCommentValue });
   };
 
-  pushComment = () => {
-    this.setState({
-      lists: this.state.lists.concat(
-        <li className="whoseComment">
-          <p className="name">{this.state.nickname}</p>
-          <p className="commentContext">{this.state.commentValue}</p>
-          <img
-            className="commentHeartImg"
-            src={this.state.commentImg.src}
-            alt={this.state.commentImg.alt}
-          ></img>
-          <p className="commentDelete">ⅹ</p>
-        </li>
-      ),
-    });
-    this.state.commentValue = '';
-  };
+  addNewComment = e => {
+    e.preventDefault();
 
-  enterPushComment = e => {
-    if (window.event.keyCode == 13) {
-      this.pushComment();
+    const newCommentValue = this.state.newCommentValue;
+
+    if (!newCommentValue) {
+      alert('내용을 입력해주세요');
+    } else {
+      this.setState({
+        commentArray: this.state.commentArray.concat(newCommentValue),
+        newCommentValue: '',
+      });
     }
   };
 
@@ -103,24 +72,24 @@ class Main extends React.Component {
                   <button className="optionPopup">
                     <svg height="16" role="img" viewBox="0 0 48 48" width="16">
                       <circle
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                         cx="8"
                         cy="24"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         r="4.5"
                       ></circle>
                       <circle
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                         cx="24"
                         cy="24"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         r="4.5"
                       ></circle>
                       <circle
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                         cx="40"
                         cy="24"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         r="4.5"
                       ></circle>
                     </svg>
@@ -154,27 +123,38 @@ class Main extends React.Component {
                   <section className="howManyHeart">
                     <span>wecode</span>님 외 <span>40명</span>이 좋아합니다.
                   </section>
-                  <CommentList data={this.state.lists} />
+                  <ul className="commentUploaded">
+                    {this.state.commentArray.map((content, index) => {
+                      return (
+                        <CommentList
+                          key={index}
+                          userName={index}
+                          comment={content}
+                        />
+                      );
+                    })}
+                  </ul>
                   <p className="whenLastCommentUpload">11시간 전</p>
                   <section className="leaveComment">
-                    <div className="commentBox">
+                    <form
+                      className="imogeCommentBox"
+                      onSubmit={this.addNewComment}
+                    >
                       <button className="openImogeBox">
                         <img src="images/taekjun/imoge.png" alt="imogeIcon" />
                       </button>
-                      <InputBox
-                        data={this.state.commentInputData}
-                        comment={this.state.commentValue}
-                        transferValue={this.getCommentValue}
-                        enterClick={this.enterPushComment}
-                      />
-                      <sendCommentBtn
-                        className="sendComment"
-                        btnType={this.state.btnType}
-                        onClick={this.pushComment}
-                      >
+                      <input
+                        className="commentInput"
+                        name="comment"
+                        type="text"
+                        value={this.state.newCommentValue}
+                        placeholder="댓글 달기..."
+                        onChange={this.newComment}
+                      ></input>
+                      <button className="commentSaveBtn" type="submit">
                         게시
-                      </sendCommentBtn>
-                    </div>
+                      </button>
+                    </form>
                   </section>
                 </main>
               </article>

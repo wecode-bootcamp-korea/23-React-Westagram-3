@@ -3,7 +3,18 @@ import './taekjunMain.scss';
 
 class CommentList extends Component {
   render() {
-    return <ul className="commentUploaded">{this.props.data}</ul>;
+    return (
+      <li className="whoseComment" key={this.props.key}>
+        <p className="name">user{this.props.userName}</p>
+        <p className="commentContext">{this.props.comment}</p>
+        <img
+          className="commentHeartImg"
+          src="images/taekjun/heart.png"
+          alt="heartIcon"
+        ></img>
+        <p className="commentDelete">ⅹ</p>
+      </li>
+    );
   }
 }
 

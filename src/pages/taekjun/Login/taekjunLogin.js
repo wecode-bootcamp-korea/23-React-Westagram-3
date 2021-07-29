@@ -1,69 +1,48 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import InputBox from './InputBox';
 import './taekjunLogin.scss';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      idInput: {
-        name: 'id',
-        type: 'text',
-        placeholder: '전화번호, 사용자 이름 또는 이메일',
-      },
-      pwInput: {
-        name: 'pw',
-        type: 'password',
-        placeholder: '비밀번호',
-      },
-      idValidation: false,
-      pwValidation: false,
+      idValue: '',
+      pwValue: '',
     };
   }
 
-  validationCheck = (name, value) => {
+  getValue = e => {
+    const { name, value } = e.target;
     if (name === 'id') {
       value.indexOf('@') !== -1
-        ? this.setState({ idValidation: true })
-        : this.setState({ idValidation: false });
+        ? this.setState({
+            idValue: value,
+          })
+        : this.setState({ idValue: value });
     }
-
-    value.length > 4 && console.log(1);
 
     if (name === 'pw') {
       value.length > 4
-        ? this.setState({ pwValidation: true })
-        : this.setState({ pwValidation: false });
+        ? this.setState({
+            pwValue: value,
+          })
+        : this.setState({ pwValue: value });
     }
+  };
 
-    // this.setState({
-    //   validationMode:
-    //     name === 'id'
-    //       ? (this.validationMode = 'idCheck')
-    //       : (this.validationMode = 'pwCheck'),
-    //   idValidation:
-    //     this.validationMode === 'idCheck'
-    //       ? !!(value.indexOf('@') + 1)
-    //         ? (this.idValidation = true)
-    //         : (this.idValidation = false)
-    //       : this.idValidation
-    //       ? (this.idValidation = true)
-    //       : (this.idValidation = false),
-    //   pwValidation:
-    //     this.validationMode !== 'idCheck'
-    //       ? value.length > 4
-    //         ? (this.pwValidation = true)
-    //         : (this.pwValidation = false)
-    //       : this.pwValidation
-    //       ? (this.pwValidation = true)
-    //       : (this.pwValidation = false),
-    // });
+  test = () => {
+    console.log(this.state.idValue, this.state.pwValue);
+    fetch('http://10.58.1.112:8000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.idValue,
+        password: this.state.pwValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => console.log('결과', result));
   };
 
   render() {
-    console.log(this.state.idValidation, 'id');
-    console.log(this.state.pwValidation, 'pw');
     return (
       <div>
         <div className="flexBox">
@@ -71,26 +50,28 @@ class Login extends React.Component {
             <h1 className="login logo">Westagram</h1>
             <div className="userInfoContainer">
               <div className="loginBtnContainer">
-                <InputBox
-                  data={this.state.idInput}
-                  transferNameValue={this.validationCheck}
-                />
-                <InputBox
-                  data={this.state.pwInput}
-                  transferNameValue={this.validationCheck}
-                />
-                <Link to="/taekjunMain">
-                  <button
-                    className="loginButton"
-                    style={
-                      this.state.idValidation && this.state.pwValidation
-                        ? { opacity: '100%' }
-                        : { opacity: '50%' }
-                    }
-                  >
-                    로그인
-                  </button>
-                </Link>
+                <input
+                  name="id"
+                  type="text"
+                  placeholder="전화번호, 사용자 이름 또는 이메일"
+                  onChange={this.getValue}
+                ></input>
+                <input
+                  name="pw"
+                  type="password"
+                  placeholder="비밀번호"
+                  onChange={this.getValue}
+                ></input>
+                <button
+                  className="loginButton"
+                  style={
+                    this.state.idValidation && this.state.pwValidation
+                      ? { opacity: '100%' }
+                      : { opacity: '50%' }
+                  }
+                >
+                  로그인
+                </button>
               </div>
               <a className="findPassword">비밀번호를 잊으셨나요?</a>
             </div>
