@@ -38,8 +38,19 @@ class JaehyunLogin extends React.Component {
     }
   };
 
-  goToMain = () => {
-    this.props.history.push('./JaehyunMain');
+  goToMain = e => {
+    e.preventDefault();
+    fetch('http://10.58.0.158:8000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.userName,
+        password: this.state.password,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => console.log('결과: ', result));
+
+    // this.props.history.push('./JaehyunMain');
   };
 
   render() {
