@@ -25,11 +25,21 @@ class Main extends React.Component {
       comments: this.state.comments.concat(newComment),
       stateComment: '',
     });
-    console.log('plusComment');
   };
 
+  componentDidMount() {
+    fetch('http://localhost:3000/data/commentData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          comments: data,
+        });
+      });
+  }
+
   render() {
-    console.log('state', this.state);
     return (
       <>
         <Nav />
@@ -91,7 +101,13 @@ class Main extends React.Component {
               </div>
               <div className="commentViewBox center">
                 {this.state.comments.map((comment, index) => {
-                  return <Comment id={index} comment={comment} />;
+                  return (
+                    <Comment
+                      key={index}
+                      name={comment.userName}
+                      comment={comment.content}
+                    />
+                  );
                 })}
               </div>
               <div className="commentBox">

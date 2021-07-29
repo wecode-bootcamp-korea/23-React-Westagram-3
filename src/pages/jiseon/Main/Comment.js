@@ -5,7 +5,7 @@ class Comment extends React.Component {
     return (
       <>
         <div className="commentFlex">
-          <span className="boldFont">{this.props.id}</span>
+          <span className="boldFont">{this.props.name}</span>
           <li className="commentStyle">{this.props.comment}</li>
         </div>
       </>
