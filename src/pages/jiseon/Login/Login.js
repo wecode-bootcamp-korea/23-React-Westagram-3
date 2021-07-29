@@ -6,21 +6,39 @@ import { withRouter } from 'react-router-dom';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { idCheck: true, pwCheck: true };
+    this.state = {
+      email: '',
+      password: '',
+      idCheck: true,
+      pwCheck: true,
+    };
   }
 
   handleIdInput = e => {
     const idValue = e.target.value;
     idValue.indexOf('@')
-      ? this.setState({ idCheck: false })
+      ? this.setState({ email: idValue, idCheck: false })
       : this.setState({ idCheck: true });
   };
+
   handlePwInput = e => {
     const pwValue = e.target.value;
     pwValue.length > 5
-      ? this.setState({ pwCheck: false })
+      ? this.setState({ password: pwValue, pwCheck: false })
       : this.setState({ pwCheck: true });
   };
+
+  // jiseon = e => {
+  //   fetch('http://10.58.0.149:8000/users/signup', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       email: this.state.email,
+  //       password: this.state.password,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => console.log('결과', result));
+  // };
 
   goToMain = () => {
     this.props.history.push('/JiseonMain');
@@ -36,13 +54,13 @@ class Login extends React.Component {
           handlePwInput={this.handlePwInput}
         />
         <button
+          onClick={this.goToMain}
           className="loginBtn"
           style={
             this.state.idCheck || this.state.pwCheck
               ? { backgroundColor: '#c0dffd' }
               : { backgroundColor: '#03376a' }
           }
-          onClick={this.goToMain}
           disabled={this.state.idCheck || this.state.pwCheck}
         >
           로그인

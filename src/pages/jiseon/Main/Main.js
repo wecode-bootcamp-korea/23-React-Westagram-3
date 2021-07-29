@@ -1,38 +1,38 @@
 import React from 'react';
 import './Main.scss';
 import Nav from './../../../components/Nav/Nav';
+import Comment from './Comment';
 
 class Main extends React.Component {
+  constructor() {
+    super();
+    this.state = { id: '', stateComment: '', comments: [] };
+  }
+  stateComment = e => {
+    const commentValue = e.target.value;
+    this.setState({ stateComment: commentValue });
+    console.log('stateComment');
+    if (e.key === 'Enter') {
+      console.log('stateComment-enter');
+      e.target.value = '';
+    }
+  };
+
+  plusComment = e => {
+    e.preventDefault();
+    const newComment = this.state.stateComment;
+    this.setState({
+      comments: this.state.comments.concat(newComment),
+      stateComment: '',
+    });
+    console.log('plusComment');
+  };
+
   render() {
+    console.log('state', this.state);
     return (
       <>
         <Nav />
-        {/* <nav>
-          <div className="logoBox">
-            <i className="fab fa-instagram"></i>
-            <h1 className="logo">westagram</h1>
-          </div>
-          <div className="searchBox">
-            <i className="fas fa-search"></i>
-            <input type="text" placeholder="검색" />
-          </div>
-          <div className="menuBox">
-            <img
-              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/explore.png"
-              alt="탐색"
-            />
-            <img
-              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png"
-              alt="하트"
-            />
-            <img
-              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/profile.png
-                "
-              alt="개인페이지"
-            />
-          </div>
-        </nav> */}
-
         <main>
           <div className="feeds">
             <article>
@@ -68,7 +68,8 @@ class Main extends React.Component {
                   />
                   <p className="boldFont">FOR_KY님 외 4명이 좋아합니다</p>
                 </div>
-                <div className="commentViewBox">
+
+                {/* <div className="commentViewBox">
                   <div className="commentFlex">
                     <span className="boldFont">wooooo_dy</span>
                     <li className="commentStyle">댓글1</li>
@@ -86,6 +87,25 @@ class Main extends React.Component {
                   placeholder=" 댓글 달기..."
                 />
                 <button className="commentBtn">게시</button>
+              </div> */}
+              </div>
+              <div className="commentViewBox center">
+                {this.state.comments.map((comment, index) => {
+                  return <Comment id={index} comment={comment} />;
+                })}
+              </div>
+              <div className="commentBox">
+                <form onSubmit={this.plusComment}>
+                  <input
+                    className="lightFontColor comment"
+                    type="text"
+                    placeholder=" 댓글 달기..."
+                    onKeyUp={this.stateComment}
+                  />
+                  <button className="commentBtn" type="submit">
+                    게시
+                  </button>
+                </form>
               </div>
             </article>
           </div>
