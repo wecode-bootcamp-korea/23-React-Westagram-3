@@ -14,6 +14,16 @@ class KayoungMain extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/data/commentData.json')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          replyBox: data,
+        });
+      });
+  }
+
   storeComment = e => {
     this.setState({ replyContent: e.target.value });
     if (e.key === 'Enter') {
@@ -23,6 +33,7 @@ class KayoungMain extends React.Component {
 
   addComment = e => {
     e.preventDefault();
+
     this.setState({
       replyBox: this.state.replyBox.concat(this.state.replyContent),
       replyContent: '',
@@ -30,7 +41,7 @@ class KayoungMain extends React.Component {
   };
 
   render() {
-    let replies = this.state.replyBox;
+    const { replyBox, replyContent } = this.state;
     return (
       <div className="mainWrapper">
         <Nav />
@@ -109,8 +120,14 @@ class KayoungMain extends React.Component {
                         한가롭게 수영하며 커피 마시고 싶다...
                       </span>
                     </li>
-                    {replies.map((content, index) => {
-                      return <Comment key={index} content={content} />;
+                    {this.state.replyBox.map(reply => {
+                      return (
+                        <Comment
+                          key={reply.id}
+                          name={reply.userName}
+                          comment={reply.content}
+                        />
+                      );
                     })}
                   </ul>
                   <form

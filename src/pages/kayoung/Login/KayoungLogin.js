@@ -44,8 +44,27 @@ class LoginInput extends React.Component {
     }
   };
 
+  signUp = () => {
+    fetch('http://10.58.1.50:8000/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.userInfo,
+        password: this.state.userPw,
+      }),
+    })
+      .then(response => response.json())
+      .then(response => {
+        console.log('로그인성공');
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.props.history.push('./KayoungMain', this.state.userInfo);
+        } else {
+          alert('다시 입력하세요');
+        }
+      });
+  };
+
   render() {
-    console.log(this.state.userInfo.length, this.state.userPw.length);
     return (
       <section className="loginContainer">
         <h1 className="logo">Westagram</h1>
@@ -66,12 +85,15 @@ class LoginInput extends React.Component {
             id="userPw"
           />
           <button
-            type="submit"
+            type="button"
             onClick={this.goToMain}
             id="inputButton"
             disabled={this.state.disabled}
           >
             로그인
+          </button>
+          <button type="button" onClick={this.signUp} id="inputButton">
+            Test
           </button>
         </form>
         <a
