@@ -4,7 +4,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <div>로그인</div>
+        <div>가영 로그인</div>
       </div>
     );
   }

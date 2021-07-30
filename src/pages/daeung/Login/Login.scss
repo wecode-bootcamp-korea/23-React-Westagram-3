@@ -1,4 +1,103 @@
-* {
-  margin: 0;
-  padding: 0;
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  #allBox {
+    width: 350px;
+    border: 1px solid #dbdbdb;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loginBox {
+      #logoBox {
+        #logo {
+          text-align: center;
+          font-family: 'Lobster', cursive;
+          font-size: 50px;
+          padding-top: 10px;
+          padding-bottom: 30px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+      .loginBox {
+        position: relative;
+        #formLogin {
+          .inputBox {
+            width: 270px;
+            display: flex;
+
+            &:first-child {
+              margin-bottom: 6px;
+            }
+            .input {
+              width: 100%;
+              padding: 10px 0;
+              font-size: 14px;
+              background-color: #fafafa;
+              border: 1px solid #dbdbdb;
+              border-radius: 5px;
+              padding-left: 10px;
+              outline: none;
+              &::placeholder {
+                color: #999999;
+              }
+            }
+          }
+          .inputBox {
+            width: 270px;
+            display: flex;
+            .input {
+              width: 100%;
+              padding: 10px 0;
+              font-size: 14px;
+              background-color: #fafafa;
+              border: 1px solid #dbdbdb;
+              border-radius: 5px;
+              padding-left: 10px;
+              outline: none;
+              &::placeholder {
+                color: #999999;
+              }
+            }
+          }
+        }
+        .buttonBox {
+          width: 270px;
+          display: flex;
+          #loginButton {
+            width: 100%;
+            padding: 8px 0;
+            margin-top: 12px;
+            border: none;
+            background-color: #c0dffd;
+            color: white;
+            font-weight: bolder;
+            border-radius: 4px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      section {
+        #pwFinder {
+          position: relative;
+          margin-top: 130px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          a {
+            display: block;
+            position: absolute;
+            bottom: 15px;
+            font-size: smaller;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
