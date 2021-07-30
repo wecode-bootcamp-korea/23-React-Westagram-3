@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "userName": "jiseon",
+    "content": "안녕하세요 지선이에요"
+  },
+  {
+    "id": 2,
+    "userName": "daeung",
+    "content": "3조 팀장 대웅입니다!!!"
+  },
+  {
+    "id": 3,
+    "userName": "kayoung",
+    "content": "집에 가고 싶어요ㅠㅠ"
+  },
+  {
+    "id": 4,
+    "userName": "taekjun",
+    "content": "부산에서 왔습니다"
+  },
+  {
+    "id": 5,
+    "userName": "jaehyun",
+    "content": "안녕?? 그래 안녕"
+  }
+]
