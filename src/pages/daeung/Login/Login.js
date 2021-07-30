@@ -37,9 +37,29 @@ class Login extends React.Component {
     const getId = this.state.id;
     const getPw = this.state.pw;
 
-    return getId && getPw && getId.indexOf('@') !== -1 && getPw.length > 4
-      ? this.props.history.push('/DaeungMain')
-      : alert('아이디와 비밀번호 확인하세요');
+    console.log(getId + 'goToMain');
+
+    fetch('http://10.58.3.116:8000/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: getId,
+        password: getPw,
+        name: 'daeung3',
+        phone_number: '01011111113',
+        birthday: '1993-06-03',
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.access_token) {
+          console.log('성공');
+          this.props.history.push('/DaeungMain');
+        }
+      });
+
+    // return getId && getPw && getId.indexOf('@') !== -1 && getPw.length > 4
+    //   ? this.props.history.push('/DaeungMain')
+    //   : alert('아이디와 비밀번호 확인하세요');
     // this.props.history.push('/DaeungMain');
   };
 
