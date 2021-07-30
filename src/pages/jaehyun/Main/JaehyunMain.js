@@ -39,9 +39,9 @@ class JaehyunMain extends React.Component {
 
   render() {
     return (
-      <main className="wrap">
+      <main className="JaehyunMain">
         <Nav />
-        <section>
+        <section className="feedWraper">
           <article>
             <div className="feedHeader">
               <div className="feedProfile">
@@ -89,9 +89,10 @@ class JaehyunMain extends React.Component {
                 />
               </div>
               <div className="feedDescription">
-                <p>좋아요 2개</p>
-                <span>hoit_studio</span> Styx : isonomiā official trailer
-                <p>#Styx #hoitstudio</p>
+                <p className="feedLike">좋아요 2개</p>
+                <span className="userId">hoit_studio</span> Styx : isonomiā
+                official trailer
+                <p className="hashTag">#Styx #hoitstudio</p>
                 <ul id="reply">
                   {this.state.contents.map((content, index) => {
                     return (

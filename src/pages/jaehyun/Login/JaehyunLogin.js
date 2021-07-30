@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import './JaehyunLogin.scss';
 import InputBox from './InputBox/InputBox';
+import './JaehyunLogin.scss';
 
 class JaehyunLogin extends React.Component {
   constructor(props) {
@@ -10,31 +10,24 @@ class JaehyunLogin extends React.Component {
     this.state = {
       userName: '',
       password: '',
-      userIdCheck: true,
-      passwordCheck: true,
     };
   }
 
-  // inputChangeHandler = (name, value, disable) => {
-  //   this.setState({
-  //     [name]: value,
-  //     [name === 'userName' ? 'userIdCheck' : 'passwordCheck']: disable,
-  //   });
-  // };
-
   inputChangeHandler = e => {
     const { name, value } = e.target;
+    let userIdCheck = true;
     if (name === 'userName') {
       this.setState({
         userName: value,
-        userIdCheck: value.indexOf('@') === -1,
       });
+      userIdCheck = value.indexOf('@') === -1;
     }
     if (name === 'password') {
+      let passwordCheck = true;
       this.setState({
         password: value,
-        passwordCheck: value.length < 5,
       });
+      passwordCheck = value.length < 5;
     }
   };
 
@@ -50,7 +43,7 @@ class JaehyunLogin extends React.Component {
       .then(response => response.json())
       .then(result => console.log('결과: ', result));
 
-    // this.props.history.push('./JaehyunMain');
+    this.props.history.push('./JaehyunMain');
   };
 
   render() {
@@ -73,9 +66,9 @@ class JaehyunLogin extends React.Component {
           <button
             id="loginButton"
             onClick={this.goToMain}
-            disabled={this.state.userIdCheck || this.state.passwordCheck}
+            disabled={this.userIdCheck || this.passwordCheck}
             style={
-              this.state.userIdCheck || this.state.passwordCheck
+              this.userIdCheck || this.passwordCheck
                 ? { opacity: '10%' }
                 : { opacity: '100%' }
             }
