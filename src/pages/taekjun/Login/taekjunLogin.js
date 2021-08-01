@@ -5,32 +5,22 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      idValue: '',
-      pwValue: '',
+      idValidation: false,
+      pwValidation: false,
     };
   }
 
   getValue = e => {
     const { name, value } = e.target;
     if (name === 'id') {
-      value.indexOf('@') !== -1
-        ? this.setState({
-            idValue: value,
-          })
-        : this.setState({ idValue: value });
+      !(value.indexOf('@') + 1) && this.setState({ idValidation: true });
     }
-
     if (name === 'pw') {
-      value.length > 4
-        ? this.setState({
-            pwValue: value,
-          })
-        : this.setState({ pwValue: value });
+      value.length > 4 && this.setState({ pwValidation: true });
     }
   };
 
-  test = () => {
-    console.log(this.state.idValue, this.state.pwValue);
+  aissgnment = () => {
     fetch('http://10.58.1.112:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
@@ -69,6 +59,7 @@ class Login extends React.Component {
                       ? { opacity: '100%' }
                       : { opacity: '50%' }
                   }
+                  onClick={this.assignment}
                 >
                   로그인
                 </button>

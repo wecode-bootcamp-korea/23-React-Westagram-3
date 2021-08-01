@@ -4,9 +4,15 @@
   justify-content: center;
 }
 
-// sass 파일에서
-@import '../common.scss';
-
 .logo {
   @include flexCenter;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }

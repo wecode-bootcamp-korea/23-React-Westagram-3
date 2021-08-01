@@ -2,7 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import Nav from '../../../components/Nav/Nav';
 import CommentList from './CommentList';
+import RecommendUserList from './RecommendUserList';
+import SidebarAboutCompany from './SidebarAboutCompany';
 import './taekjunMain.scss';
+import '../../../styles/common.scss';
 
 class Main extends React.Component {
   constructor() {
@@ -10,6 +13,21 @@ class Main extends React.Component {
     this.state = {
       newCommentValue: '',
       commentArray: [],
+      userArray: ['areum', 'doheyon', 'yeonuk', 'yeonu', 'yeoleum'],
+      companyInfoArray: [
+        '소개',
+        '도움말',
+        '홍보 센터',
+        'API',
+        '채용 정보',
+        '개인정보처리방침',
+        '약관',
+        '위치',
+        '인기',
+        '계정',
+        '해시테그',
+        '언어',
+      ],
     };
   }
 
@@ -150,7 +168,7 @@ class Main extends React.Component {
                         value={this.state.newCommentValue}
                         placeholder="댓글 달기..."
                         onChange={this.newComment}
-                      ></input>
+                      />
                       <button className="commentSaveBtn" type="submit">
                         게시
                       </button>
@@ -183,123 +201,18 @@ class Main extends React.Component {
                   </article>
 
                   <ul className="sidebarRecommendUserList">
-                    <li className="user">
-                      <div className="userContainer">
-                        <img
-                          className="userProfileImg"
-                          src="images/taekjun/user1.jpeg"
-                          alt="userProfileImage"
-                        />
-                        <div className="userInfo">
-                          <h6>areum</h6>
-                          <p className="whoIsFollowing">
-                            회원님을 팔로우합니다
-                          </p>
-                        </div>
-                      </div>
-                      <a href="#">팔로우</a>
-                    </li>
-                    <li className="user">
-                      <div className="userContainer">
-                        <img
-                          className="userProfileImg"
-                          src="images/taekjun/user5.jpeg"
-                          alt="userProfileImage"
-                        />
-                        <div className="userInfo">
-                          <h6>dohyeon</h6>
-                          <p className="whoIsFollowing">
-                            회원님을 팔로우합니다
-                          </p>
-                        </div>
-                      </div>
-                      <a href="#">팔로우</a>
-                    </li>
-                    <li className="user">
-                      <div className="userContainer">
-                        <img
-                          className="userProfileImg"
-                          src="images/taekjun/user2.jpeg"
-                          alt="userProfileImage"
-                        />
-                        <div className="userInfo">
-                          <h6>yeonuk</h6>
-                          <p className="whoIsFollowing">
-                            회원님을 팔로우합니다
-                          </p>
-                        </div>
-                      </div>
-                      <a href="#">팔로우</a>
-                    </li>
-                    <li className="user">
-                      <div className="userContainer">
-                        <img
-                          className="userProfileImg"
-                          src="images/taekjun/user3.jpeg"
-                          alt="userProfileImage"
-                        />
-                        <div className="userInfo">
-                          <h6>yeonwoo</h6>
-                          <p className="whoIsFollowing">
-                            회원님을 팔로우합니다
-                          </p>
-                        </div>
-                      </div>
-                      <a href="#">팔로우</a>
-                    </li>
-                    <li className="user">
-                      <div className="userContainer">
-                        <img
-                          className="userProfileImg"
-                          src="images/taekjun/user4.jpeg"
-                          alt="userProfileImage"
-                        />
-                        <div className="userInfo">
-                          <h6>yeoleum</h6>
-                          <p className="whoIsFollowing">
-                            회원님을 팔로우합니다
-                          </p>
-                        </div>
-                      </div>
-                      <a href="#">팔로우</a>
-                    </li>
+                    {this.state.userArray.map((name, index) => {
+                      return <RecommendUserList key={index} userName={name} />;
+                    })}
                   </ul>
                 </section>
 
                 <ul className="sidebarAboutCompany">
-                  <li>
-                    <a href="">소개</a>
-                  </li>
-                  <li>
-                    <a href="">도움말</a>
-                  </li>
-                  <li>
-                    <a href="">홍보 센터</a>
-                  </li>
-                  <li>
-                    <a href="">API</a>
-                  </li>
-                  <li>
-                    <a href="">채용 정보</a>
-                  </li>
-                  <li>
-                    <a href="">개인정보처리방침</a>
-                  </li>
-                  <li>
-                    <a href="">약관</a>
-                  </li>
-                  <li>
-                    <a href="">위치</a>
-                  </li>
-                  <li>
-                    <a href="">인기 계정</a>
-                  </li>
-                  <li>
-                    <a href="">해시태그</a>
-                  </li>
-                  <li>
-                    <a href="">언어</a>
-                  </li>
+                  {this.state.companyInfoArray.map((content, index) => {
+                    return (
+                      <SidebarAboutCompany key={index} content={content} />
+                    );
+                  })}
                 </ul>
 
                 <section className="sidebarAboutCopyright">
