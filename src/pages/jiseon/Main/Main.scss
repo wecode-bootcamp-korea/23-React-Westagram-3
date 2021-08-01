@@ -1,4 +1,275 @@
-* {
-  margin: 0;
-  padding: 0;
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+$font-size: 12px;
+
+/* 폰트공통class */
+
+.center {
+  width: 550px;
+  margin: auto;
+}
+
+.boldFont {
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+.lightFontColor {
+  color: var(--my-color-2);
+}
+
+.blueFont {
+  color: var(--my-color-4);
+}
+
+span,
+p {
+  font-size: $font-size;
+}
+
+.commentStyle {
+  font-family: 'Open Sans';
+  font-size: $font-size;
+  width: 300px;
+}
+
+.commentFlex {
+  @include flex();
+  line-height: 18px;
+}
+
+body {
+  background-color: var(--my-color-1);
+}
+
+.feeds {
+  background-color: white;
+  border: 1px solid var(--my-color-2);
+  height: 880px;
+  margin: auto;
+}
+
+main {
+  @include flex();
+  width: 900px;
+  margin: 100px auto;
+}
+
+article {
+  height: 900px;
+}
+
+.writerBox {
+  height: 50px;
+  @include flex;
+
+  .writerProfile {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+  }
+  span {
+    margin-right: 420px;
+  }
+  .dot {
+    width: 20px;
+    height: 20px;
+    margin-right: 0px;
+  }
+}
+
+.mainPhoto {
+  width: 600px;
+  height: 600px;
+}
+
+.functionBox {
+  display: flex;
+  margin-top: 5px;
+  svg {
+    font-size: 20px;
+    color: var(--my-color-2);
+    margin-right: 13px;
+  }
+  svg:nth-child(1) {
+    color: rgb(250, 84, 84);
+  }
+  svg:nth-child(4) {
+    margin-left: 435px;
+  }
+}
+
+.numberOfLikesBox {
+  height: 20px;
+  margin-top: 10px;
+
+  img {
+    border-radius: 50%;
+    border: 0.5px solid var(--my-color-2);
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  .numberOfLikes {
+    @include flex;
+    margin-bottom: 8px;
+  }
+}
+
+.heart {
+  position: relative;
+  left: 540px;
+  bottom: 20px;
+  color: var(--my-color-2);
+  font-size: 9px;
+}
+.commentViewBox {
+  height: 100px;
+}
+
+.commentBox {
+  display: flex;
+  width: 600px;
+  height: 40px;
+  border-top: 1px solid var(--my-color-2);
+  margin: 40px 0 0 0;
+
+  input {
+    width: 530px;
+    height: 20px;
+    border: none;
+
+    &::placeholder {
+      color: var(--my-color-2);
+      text-align: start;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.commentBtn {
+  color: #6d99e6;
+  position: relative;
+  left: 40px;
+  border: none;
+  background-color: transparent;
+}
+
+.storiesBox img,
+.recommendationBox img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.gradient {
+  border: 3px solid transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to top right, #f5c425ec, #f724c2cb);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  margin: 2px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.mainRight {
+  width: 280px;
+  height: 700px;
+  margin-left: 20px;
+
+  .profileBox {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 10px;
+
+    .profileImg {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+  }
+  .storiesBox {
+    background-color: var(--my-color-5);
+    height: 230px;
+    border: 1px solid var(--my-color-2);
+    border-radius: 2px;
+  }
+
+  .storyProfileBox {
+    width: 240px;
+    margin: 10px auto;
+
+    li {
+      margin-bottom: 7px;
+    }
+  }
+
+  .storiesMenu {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 5px;
+  }
+  .storyProfile {
+    @include flex();
+    .gradient {
+      img {
+        position: relative;
+        top: 5px;
+        left: 5px;
+      }
+    }
+  }
+
+  .recommendationBox {
+    background-color: var(--my-color-5);
+    height: 180px;
+    border: 1px solid var(--my-color-2);
+    border-radius: 2px;
+    margin-top: 15px;
+  }
+  .recommendationMenu {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin: auto;
+    margin-top: 5px;
+  }
+  .recommendationList {
+    @include flex;
+    width: 230px;
+    margin: 10px auto;
+
+    img {
+      margin-right: 15px;
+    }
+    div {
+      margin-right: 40px;
+    }
+  }
+
+  .infoBox {
+    height: 150px;
+    margin-top: 30px;
+
+    p {
+      color: var(--my-color-2);
+      margin-bottom: 15px;
+    }
+    span {
+      color: var(--my-color-2);
+    }
+  }
 }
