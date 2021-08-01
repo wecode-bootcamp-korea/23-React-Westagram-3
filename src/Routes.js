@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-// import Nav from './components/Nav/Nav';
+import Nav from './components/Nav/Nav';
 import DaeungLogin from './pages/daeung/Login/Login';
 import JaehyunLogin from './pages/jaehyun/Login/Login';
 import JiseonLogin from './pages/jiseon/Login/Login';
 import KayoungLogin from './pages/kayoung/Login/Login';
-import TaekjunLogin from './pages/taekjun/Login/Login';
+import TaekjunLogin from './pages/taekjun/Login/taekjunLogin';
 
 import DaeungMain from './pages/daeung/Main/Main';
 import JaehyunMain from './pages/jaehyun/Main/Main';
 import JiseonMain from './pages/jiseon/Main/Main';
 import KayoungMain from './pages/kayoung/Main/Main';
-import TaekjunMain from './pages/taekjun/Main/Main';
+import TaekjunMain from './pages/taekjun/Main/taekjunMain';
 import App from './App';
 
 class Routes extends React.Component {
