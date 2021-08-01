@@ -6,13 +6,15 @@ class LoginBox extends React.Component {
     return (
       <div className="loginBox">
         <input
-          onChange={this.props.handleIdInput}
+          name="id"
+          onChange={this.props.inputHandler}
           className="userName"
           type="text"
           placeholder=" 전화번호, 사용자 이름 또는 이메일"
         />
         <input
-          onChange={this.props.handlePwInput}
+          name="password"
+          onChange={this.props.inputHandler}
           className="passWord"
           type="password"
           placeholder=" 비밀번호"

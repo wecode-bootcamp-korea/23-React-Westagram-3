@@ -1,19 +1,23 @@
 import React from 'react';
 import './Main.scss';
+import './Common.scss';
 import Nav from './../../../components/Nav/Nav';
 import Comment from './Comment';
 
 class Main extends React.Component {
   constructor() {
     super();
-    this.state = { id: '', stateComment: '', comments: [] };
+    this.state = {
+      id: '',
+      stateComment: '',
+      comments: [],
+    };
   }
   stateComment = e => {
     const commentValue = e.target.value;
+    console.log('commentValue');
     this.setState({ stateComment: commentValue });
-    console.log('stateComment');
     if (e.key === 'Enter') {
-      console.log('stateComment-enter');
       e.target.value = '';
     }
   };
@@ -40,6 +44,7 @@ class Main extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <>
         <Nav />
@@ -78,32 +83,12 @@ class Main extends React.Component {
                   />
                   <p className="boldFont">FOR_KY님 외 4명이 좋아합니다</p>
                 </div>
-
-                {/* <div className="commentViewBox">
-                  <div className="commentFlex">
-                    <span className="boldFont">wooooo_dy</span>
-                    <li className="commentStyle">댓글1</li>
-                  </div>
-                  <div className="commentFlex">
-                    <span className="boldFont">wooooo_dy</span>
-                    <li className="commentStyle">댓글2</li>
-                  </div>
-                </div>
-              </div>
-              <div className="commentBox">
-                <input
-                  className="lightFontColor comment"
-                  type="text"
-                  placeholder=" 댓글 달기..."
-                />
-                <button className="commentBtn">게시</button>
-              </div> */}
               </div>
               <div className="commentViewBox center">
-                {this.state.comments.map((comment, index) => {
+                {this.state.comments.map(comment => {
                   return (
                     <Comment
-                      key={index}
+                      key={comment.id}
                       name={comment.userName}
                       comment={comment.content}
                     />

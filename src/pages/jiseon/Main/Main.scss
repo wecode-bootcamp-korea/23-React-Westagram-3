@@ -1,122 +1,48 @@
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-  font-family: 'Open Sans', sans-serif;
-}
-:root {
-  --my-color-1: #f8f8f8f6;
-  --my-color-2: #aaabac;
-  --my-color-3: #444444;
-  --my-color-4: #6d99e6;
-  --my-color-5: white;
-}
-
-/* section,
-html,
-body {
-  width: 100%;
+@mixin flex {
   display: flex;
-  flex-direction: column;
-} */
+  align-items: center;
+}
+$font-size: 12px;
 
 /* 폰트공통class */
+
 .center {
   width: 550px;
   margin: auto;
 }
+
 .boldFont {
   font-weight: bold;
   margin-right: 2px;
 }
+
 .lightFontColor {
   color: var(--my-color-2);
 }
+
 .blueFont {
   color: var(--my-color-4);
 }
+
 span,
 p {
-  font-size: 12px;
+  font-size: $font-size;
 }
+
 .commentStyle {
   font-family: 'Open Sans';
-  font-size: 12px;
+  font-size: $font-size;
   width: 300px;
 }
+
 .commentFlex {
-  display: flex;
+  @include flex();
+  line-height: 18px;
 }
 
 body {
-  // display: flex;
-  // align-items: center;
-  // flex-direction: column;
   background-color: var(--my-color-1);
 }
-
-// nav {
-//   position: fixed;
-//   z-index: 1;
-//   left: 0;
-//   top: 0;
-//   background-color: var(--my-color-5);
-//   width: 100%;
-//   height: 70px;
-//   border-bottom: 1px solid var(--my-color-2);
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-// }
-
-// .logoBox {
-//   height: 70px;
-//   display: flex;
-//   align-items: center;
-// }
-
-// .logoBox svg {
-//   color: var(--my-color-3);
-//   font-size: 30px;
-//   line-height: 70px;
-//   padding-right: 15px;
-//   border-right: 1px solid var(--my-color-3);
-// }
-
-// .logo {
-//   color: var(--my-color-3);
-//   line-height: 70px;
-//   font-size: 30px;
-//   padding-left: 15px;
-//   font-family: 'Lobster';
-// }
-
-// .searchBox svg {
-//   color: var(--my-color-2);
-//   position: relative;
-//   left: 80px;
-//   font-size: 10px;
-// }
-// .searchBox > input {
-//   background-color: var(--my-color-1);
-//   border: 1px solid var(--my-color-2);
-//   border-radius: 2px;
-//   width: 180px;
-//   height: 20px;
-// }
-// .searchBox input::placeholder {
-//   color: var(--my-color-2);
-//   text-align: center;
-// }
-// .searchBox input:focus {
-//   outline: none;
-// }
-// .menuBox img {
-//   width: 23px;
-//   height: 23px;
-//   margin-left: 15px;
-// }
 
 .feeds {
   background-color: white;
@@ -126,20 +52,18 @@ body {
 }
 
 main {
-  /* height: 1000px; */
-  display: flex;
+  @include flex();
   width: 900px;
   margin: 100px auto;
 }
 
 article {
-  /* width: 600px; */
   height: 900px;
 }
+
 .writerBox {
   height: 50px;
-  display: flex;
-  align-items: center;
+  @include flex;
 
   .writerProfile {
     border-radius: 50%;
@@ -156,6 +80,7 @@ article {
     margin-right: 0px;
   }
 }
+
 .mainPhoto {
   width: 600px;
   height: 600px;
@@ -189,8 +114,7 @@ article {
     margin-right: 10px;
   }
   .numberOfLikes {
-    display: flex;
-    align-items: center;
+    @include flex;
     margin-bottom: 8px;
   }
 }
@@ -217,8 +141,6 @@ article {
     width: 530px;
     height: 20px;
     border: none;
-    // margin-left: 10px;
-    // margin-top: 4px;
 
     &::placeholder {
       color: var(--my-color-2);
@@ -229,11 +151,11 @@ article {
     }
   }
 }
+
 .commentBtn {
   color: #6d99e6;
   position: relative;
   left: 40px;
-  bottom: 6px;
   border: none;
   background-color: transparent;
 }
@@ -244,6 +166,7 @@ article {
   width: 40px;
   height: 40px;
 }
+
 .gradient {
   border: 3px solid transparent;
   background-image: linear-gradient(white, white),
@@ -261,93 +184,92 @@ article {
   width: 280px;
   height: 700px;
   margin-left: 20px;
-}
-.profileBox {
-  height: 55px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  bottom: 10px;
 
-  .profileImg {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-}
-.storiesBox {
-  background-color: var(--my-color-5);
-  height: 230px;
-  border: 1px solid var(--my-color-2);
-  border-radius: 2px;
-}
+  .profileBox {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 10px;
 
-.storyProfileBox {
-  width: 240px;
-  margin: 10px auto;
-
-  li {
-    margin-bottom: 7px;
-  }
-}
-
-.storiesMenu {
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  margin-top: 5px;
-}
-.storyProfile {
-  display: flex;
-  align-items: center;
-  .gradient {
-    img {
-      position: relative;
-      top: 5px;
-      left: 5px;
+    .profileImg {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
     }
   }
-}
-
-.recommendationBox {
-  background-color: var(--my-color-5);
-  height: 180px;
-  border: 1px solid var(--my-color-2);
-  border-radius: 2px;
-  margin-top: 15px;
-}
-.recommendationMenu {
-  display: flex;
-  justify-content: space-between;
-  width: 250px;
-  margin: auto;
-  margin-top: 5px;
-}
-.recommendationList {
-  display: flex;
-  align-items: center;
-  width: 230px;
-  margin: 10px auto;
-
-  img {
-    margin-right: 15px;
+  .storiesBox {
+    background-color: var(--my-color-5);
+    height: 230px;
+    border: 1px solid var(--my-color-2);
+    border-radius: 2px;
   }
-  div {
-    margin-right: 40px;
-  }
-}
 
-.infoBox {
-  height: 150px;
-  margin-top: 30px;
+  .storyProfileBox {
+    width: 240px;
+    margin: 10px auto;
 
-  p {
-    color: var(--my-color-2);
-    margin-bottom: 15px;
+    li {
+      margin-bottom: 7px;
+    }
   }
-  span {
-    color: var(--my-color-2);
+
+  .storiesMenu {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 5px;
+  }
+  .storyProfile {
+    @include flex();
+    .gradient {
+      img {
+        position: relative;
+        top: 5px;
+        left: 5px;
+      }
+    }
+  }
+
+  .recommendationBox {
+    background-color: var(--my-color-5);
+    height: 180px;
+    border: 1px solid var(--my-color-2);
+    border-radius: 2px;
+    margin-top: 15px;
+  }
+  .recommendationMenu {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin: auto;
+    margin-top: 5px;
+  }
+  .recommendationList {
+    @include flex;
+    width: 230px;
+    margin: 10px auto;
+
+    img {
+      margin-right: 15px;
+    }
+    div {
+      margin-right: 40px;
+    }
+  }
+
+  .infoBox {
+    height: 150px;
+    margin-top: 30px;
+
+    p {
+      color: var(--my-color-2);
+      margin-bottom: 15px;
+    }
+    span {
+      color: var(--my-color-2);
+    }
   }
 }

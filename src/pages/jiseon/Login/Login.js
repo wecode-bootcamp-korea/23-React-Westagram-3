@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.scss';
+import '../Main/Common.scss';
 import LoginBox from './LoginBox';
 import { withRouter } from 'react-router-dom';
 
@@ -7,38 +8,21 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      id: '',
       password: '',
-      idCheck: true,
-      pwCheck: true,
     };
   }
 
-  handleIdInput = e => {
-    const idValue = e.target.value;
-    idValue.indexOf('@')
-      ? this.setState({ email: idValue, idCheck: false })
-      : this.setState({ idCheck: true });
+  inputHandler = e => {
+    const name = e.target.name;
+    const inputValue = e.target.value;
+    this.setState({ [name]: inputValue });
   };
 
-  handlePwInput = e => {
-    const pwValue = e.target.value;
-    pwValue.length > 5
-      ? this.setState({ password: pwValue, pwCheck: false })
-      : this.setState({ pwCheck: true });
+  activeBtn = () => {
+    const { id, password } = this.state;
+    return id.indexOf('@') !== -1 && password.length >= 5 ? true : false;
   };
-
-  // jiseon = e => {
-  //   fetch('http://10.58.0.149:8000/users/signup', {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       email: this.state.email,
-  //       password: this.state.password,
-  //     }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => console.log('결과', result));
-  // };
 
   goToMain = () => {
     this.props.history.push('/JiseonMain');
@@ -46,22 +30,14 @@ class Login extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(this.activeBtn());
     return (
       <div id="borderBox">
         <h1>westagram</h1>
-        <LoginBox
-          handleIdInput={this.handleIdInput}
-          handlePwInput={this.handlePwInput}
-        />
+        <LoginBox inputHandler={this.inputHandler} />
         <button
           onClick={this.goToMain}
-          className="loginBtn"
-          style={
-            this.state.idCheck || this.state.pwCheck
-              ? { backgroundColor: '#c0dffd' }
-              : { backgroundColor: '#03376a' }
-          }
-          disabled={this.state.idCheck || this.state.pwCheck}
+          className={this.activeBtn() ? 'afterActive' : 'beforeActive'}
         >
           로그인
         </button>

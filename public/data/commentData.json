@@ -22,6 +22,14 @@
     "userName": "jiseon",
     "content": "드디어 됐다",
     "isLiked": false
+  },
+  {
+    "id": 5,
+    "userName": "daeung",
+    "content": "3팀 팀장입니다",
+    "isLiked": true
+  
   }
+
 ]
 

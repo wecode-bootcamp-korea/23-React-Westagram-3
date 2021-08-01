@@ -1,20 +1,28 @@
-// body {
-//   display: flex;
-//   justify-content: center;
-//   margin-top: 80px;
-// }
+@mixin btn-deco() {
+  width: 300px;
+  height: 35px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  line-height: 35px;
+}
+
+@mixin flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 #borderBox {
   width: 380px;
   height: 440px;
   border: 1px solid #dbdbdb;
-  display: flex;
-  flex-direction: column;
+  @include flexbox;
   align-items: center;
   margin: 90px auto;
-  // position: relative;
-  // left: 50%;
-  // right: 100px;
+
   h1 {
     font-size: 65px;
     margin: 15px 0;
@@ -22,9 +30,7 @@
   }
   .loginBox {
     width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include flexbox;
     margin-top: 30px;
 
     input {
@@ -45,26 +51,20 @@
       }
     }
   }
+
+  .beforeActive {
+    @include btn-deco;
+    background-color: #c0dffd;
+  }
+
+  a {
+    margin-top: 50px;
+    color: #03376a;
+    font-size: 14px;
+  }
 }
 
-.loginBtn {
-  width: 300px;
-  height: 35px;
-  margin: 15px 0;
-  background-color: #c0dffd;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  text-align: center;
-  line-height: 35px;
-}
-
-// .active {
-//   background-color: #0096f6;
-// }
-
-a {
-  margin-top: 50px;
-  color: #03376a;
-  font-size: 14px;
+.afterActive {
+  @include btn-deco;
+  background-color: #03376a;
 }

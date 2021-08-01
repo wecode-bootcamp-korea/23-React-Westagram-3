@@ -2,13 +2,14 @@ import React from 'react';
 
 class Comment extends React.Component {
   render() {
+    console.log(this.props);
     return (
-      <>
-        <div className="commentFlex">
-          <span className="boldFont">{this.props.name}</span>
-          <li className="commentStyle">{this.props.comment}</li>
+      <li className="commentFlex">
+        <span className="boldFont">{this.props.name}</span>
+        <div>
+          <span className="commentStyle">{this.props.comment}</span>
         </div>
-      </>
+      </li>
     );
   }
 }
