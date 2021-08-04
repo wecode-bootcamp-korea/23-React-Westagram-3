@@ -1,0 +1,71 @@
+$font-stack: 'Lobster', cursive;
+$border: 1px solid #efefef;
+$background-color: #fafafa;
+$button-color: #0095f6;
+
+@mixin inputbtn-stack {
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.loginContainer {
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: $font-stack;
+  width: 500px;
+  height: auto;
+  border: $border;
+  text-align: center;
+
+  .logo {
+    padding: 50px;
+    font-size: 65px;
+  }
+
+  .inputGroup {
+    input {
+      @include inputbtn-stack;
+      padding: 20px 16px;
+      font-size: 16px;
+      border: $border;
+      background-color: $background-color;
+
+      &:first-child {
+        margin-bottom: 10px;
+      }
+      &:nth-child(2) {
+        margin-bottom: 20px;
+      }
+    }
+
+    #inputButton {
+      display: block;
+      margin: 0 auto;
+      width: 430px;
+      height: 50px;
+      margin-bottom: 200px;
+      font-size: 20px;
+      color: $background-color;
+      background-color: $button-color;
+      border: none;
+      border-radius: 6px;
+      opacity: 1;
+      transition: opacity 200ms ease-in;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .notice {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: navy;
+  }
+}
