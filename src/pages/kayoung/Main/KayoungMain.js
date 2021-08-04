@@ -1,8 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import './KayoungMain.scss';
 import Nav from '../../../components/Nav/Nav';
 import Comment from './Comment';
+import Recommendation from './Recommendation';
+import Footer from './Footer';
+import './KayoungMain.scss';
 
 class KayoungMain extends React.Component {
   constructor(props) {
@@ -33,9 +35,9 @@ class KayoungMain extends React.Component {
 
   addComment = e => {
     e.preventDefault();
-
+    const { replyBox, replyContent } = this.state;
     this.setState({
-      replyBox: this.state.replyBox.concat(this.state.replyContent),
+      replyBox: replyBox.concat(replyContent),
       replyContent: '',
     });
   };
@@ -162,143 +164,8 @@ class KayoungMain extends React.Component {
                 <span className="descSpan">FE개발자</span>
               </div>
             </div>
-            <div className="recommendWrap">
-              <div className="recommendTitle">
-                <strong>회원님을 위한 추천</strong>
-                <span className="findAll">모두 보기</span>
-              </div>
-              <ul className="recommendLists">
-                <li>
-                  <div className="recommendContainer">
-                    <div className="effectWrap">
-                      <img
-                        alt="Recommended accounts profile"
-                        src="./images/kayoung/rec-image-1.jpg"
-                        className="profileImage"
-                      />
-                    </div>
-                    <div className="recommendContent">
-                      <span className="titleSpan">joaaaaaahye</span>
-                      <span className="descSpan">회원님을 위한 추천</span>
-                    </div>
-                  </div>
-                  <button type="button" className="statusButton">
-                    팔로우
-                  </button>
-                </li>
-                <li>
-                  <div className="recommendContainer">
-                    <div className="effectWrap">
-                      <img
-                        alt="Recommended accounts profile"
-                        src="./images/kayoung/rec-image-2.jpg"
-                        className="profileImage"
-                      />
-                    </div>
-                    <div className="recommendContent">
-                      <span className="titleSpan">rampart81</span>
-                      <span className="descSpan">회원님을 위한 추천</span>
-                    </div>
-                  </div>
-                  <button type="button" className="statusButton">
-                    팔로우
-                  </button>
-                </li>
-                <li>
-                  <div className="recommendContainer">
-                    <div className="effectWrap">
-                      <img
-                        alt="Recommended accounts profile"
-                        src="./images/kayoung/rec-image-3.jpg"
-                        className="profileImage"
-                      />
-                    </div>
-                    <div className="recommendContent">
-                      <span className="titleSpan">shawnjjoo</span>
-                      <span className="descSpan">회원님을 팔로우 합니다</span>
-                    </div>
-                  </div>
-                  <button type="button" className="statusButton">
-                    팔로우
-                  </button>
-                </li>
-                <li>
-                  <div className="recommendContainer">
-                    <div className="effectWrap">
-                      <img
-                        alt="Recommended accounts profile"
-                        src="./images/kayoung/rec-image-4.jpg"
-                        className="profileImage"
-                      />
-                    </div>
-                    <div className="recommendContent">
-                      <span className="titleSpan">yongdalKim</span>
-                      <span className="descSpan">회원님을 팔로우 합니다</span>
-                    </div>
-                  </div>
-                  <button type="button" className="statusButton">
-                    팔로우
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <footer>
-              <div className="footerWrap">
-                <ul className="footerList">
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      소개 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      홍보 센터 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      API ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      채용 정보 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      개인정보처리방침 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      약관 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      디렉터리 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      프로필 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      해시태그 ·
-                    </a>
-                  </li>
-                  <li className="footerListItem">
-                    <a href="" target="_blank">
-                      언어
-                    </a>
-                  </li>
-                </ul>
-                <span>© 2021 INSTAGRAM FROM FACEBOOK</span>
-              </div>
-            </footer>
+            <Recommendation />
+            <Footer />
           </div>
         </aside>
       </div>

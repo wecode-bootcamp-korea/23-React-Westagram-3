@@ -7,31 +7,27 @@ class LoginInput extends React.Component {
     super(props);
 
     this.state = {
-      userInfo: '',
-      userPw: '',
-      disabled: true,
+      userInput: '',
+      // userPw: '',
     };
   }
 
-  handleIdInput = e => {
+  handleInput = e => {
     this.setState({
-      userInfo: e.target.value,
-      disabled:
-        this.state.userInfo.length !== 0 && this.state.userPw.length !== 0
-          ? false
-          : true,
+      userInput: e.target.value,
+      // disabled: this.state.userInput.length !== 0 ? false : true,
     });
   };
 
-  handlePwInput = e => {
-    this.setState({
-      userPw: e.target.value,
-      disabled:
-        this.state.userInfo.length !== 0 && this.state.userPw.length !== 0
-          ? false
-          : true,
-    });
-  };
+  // handlePwInput = e => {
+  //   this.setState({
+  //     userPw: e.target.value,
+  //     disabled:
+  //       this.state.userInfo.length !== 0 && this.state.userPw.length !== 0
+  //         ? false
+  //         : true,
+  //   });
+  // };
 
   goToMain = e => {
     e.preventDefault();
@@ -54,7 +50,6 @@ class LoginInput extends React.Component {
     })
       .then(response => response.json())
       .then(response => {
-        console.log('로그인성공');
         if (response.token) {
           localStorage.setItem('token', response.token);
           this.props.history.push('./KayoungMain', this.state.userInfo);
@@ -70,25 +65,28 @@ class LoginInput extends React.Component {
         <h1 className="logo">Westagram</h1>
         <form className="inputGroup">
           <input
-            onChange={this.handleIdInput}
+            onChange={this.handleInput}
             value={this.state.userInfo}
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            id="userInfo"
+            className="userInfo"
+            name="userInput"
           />
           <input
-            onChange={this.handlePwInput}
+            onChange={this.handleInput}
             value={this.state.userPw}
             type="password"
             placeholder="비밀번호"
-            className="input"
-            id="userPw"
+            className="userPw"
+            name="userInput"
           />
           <button
             type="button"
             onClick={this.goToMain}
             id="inputButton"
-            disabled={this.state.disabled}
+            onChange={this.handleInput}
+            disabled={this.state.userInput.length !== 0 ? false : true}
+            // disabled={this.state.handleInput}
           >
             로그인
           </button>

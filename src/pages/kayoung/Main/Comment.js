@@ -3,7 +3,7 @@ import './KayoungMain.scss';
 
 class Comment extends React.Component {
   render() {
-    console.log(this.props);
+    const { name, comment } = this.props;
     return (
       <li key={this.props.id}>
         <span
@@ -14,10 +14,10 @@ class Comment extends React.Component {
             color: 262626,
           }}
         >
-          {this.props.name}
+          {name}
         </span>
         <span style={{ fontSize: 14, fontWeight: 400, color: 262626 }}>
-          {this.props.comment}
+          {comment}
         </span>
       </li>
     );
